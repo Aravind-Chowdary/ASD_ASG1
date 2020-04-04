@@ -36,6 +36,13 @@ class Login extends JFrame implements ActionListener {
         p1.setBounds(350,300,200,25);
         p1.setToolTipText("Enter Password");
         jf.add(p1);
+
+        jf.setTitle("Login");
+        jf.setLocation(20,20);
+        jf.setSize(800,600);
+        jf.setResizable(false);
+        jf.getContentPane().setBackground(Color.cyan);
+        jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent ae)
     {
