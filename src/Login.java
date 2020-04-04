@@ -9,13 +9,14 @@ class Login extends JFrame implements ActionListener {
     JLabel l5,l1,l2;
     JTextField t1;
     JPasswordField p1;
+    JButton b1,b2,b3,b4;
     Font f;
     Login()
     {
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
-        l5 = new JLabel("Login Here");l5.setFont(new Font("Times New Roman",Font.BOLD,30));
+        l5 = new JLabel("Welcome");l5.setFont(new Font("Times New Roman",Font.BOLD,30));
         l5.setBounds(300,100,300,40);
         jf.add(l5);
 
@@ -36,6 +37,22 @@ class Login extends JFrame implements ActionListener {
         p1.setBounds(350,300,200,25);
         p1.setToolTipText("Enter Password");
         jf.add(p1);
+
+        b1 = new JButton("Login");
+        b1.setBounds(200,400,100,35);
+        jf.add(b1);b1.addActionListener(this);
+
+        b2 = new JButton("Clear");
+        b2.setBounds(320,400,100,35);
+        jf.add(b2);b2.addActionListener(this);
+
+        b3 = new JButton("Exit");
+        b3.setBounds(440,400,100,35);
+        jf.add(b3);b3.addActionListener(this);
+
+        b4 = new JButton("Back");
+        b4.setBounds(560,400,100,35);
+        jf.add(b4);b4.addActionListener(this);
 
         jf.setTitle("Login");
         jf.setLocation(20,20);
