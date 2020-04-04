@@ -6,8 +6,9 @@ import javax.swing.*;
 
 class Login extends JFrame implements ActionListener {
     JFrame jf;
-    JLabel l5,l1;
+    JLabel l5,l1,l2;
     JTextField t1;
+    JPasswordField p1;
     Font f;
     Login()
     {
@@ -26,6 +27,15 @@ class Login extends JFrame implements ActionListener {
         t1.setBounds(350,250,200,25);
         t1.setToolTipText("Enter Username");
         jf.add(t1);
+
+        l2 = new JLabel("Password  : "); l2.setFont(f);
+        l2.setBounds(200,300,200,25);
+        jf.add(l2);
+
+        p1 = new JPasswordField(20);
+        p1.setBounds(350,300,200,25);
+        p1.setToolTipText("Enter Password");
+        jf.add(p1);
     }
     public void actionPerformed(ActionEvent ae)
     {
