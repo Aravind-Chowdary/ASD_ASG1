@@ -1,24 +1,32 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 class Login extends JFrame implements ActionListener {
-    JFrame jf;
-    JLabel l5,l1,l2;
-    JTextField t1;
-    JPasswordField p1;
-    JButton b1,b2,b3,b4;
-    Font f;
+    JFrame jf; //
+    JLabel l5,l1,l2,l3,l4; //
+    JTextField t1; //
+    JPasswordField p1; //
+    JButton b1,b2,b3,b4; //
+    DB db=null; //
+    int cnt=0,cnt1=0; //To count the login attempts
+    Connection con=null;
+    Font f; //
     Login()
     {
+        db = new DB();
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
         l5 = new JLabel("Welcome");l5.setFont(new Font("Times New Roman",Font.BOLD,30));
         l5.setBounds(300,100,300,40);
         jf.add(l5);
+
+
 
         l1 = new JLabel("User Name : "); l1.setFont(f);
         l1.setBounds(200,250,200,25);
@@ -28,6 +36,7 @@ class Login extends JFrame implements ActionListener {
         t1.setBounds(350,250,200,25);
         t1.setToolTipText("Enter Username");
         jf.add(t1);
+
 
         l2 = new JLabel("Password  : "); l2.setFont(f);
         l2.setBounds(200,300,200,25);
@@ -61,9 +70,31 @@ class Login extends JFrame implements ActionListener {
         jf.getContentPane().setBackground(Color.cyan);
         jf.setVisible(true);
     }
-    public void actionPerformed(ActionEvent ae)
-    {
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b1) {
+            try {
+                String s = t1.getText();
+                String s1 = new String(p1.getPassword());
+                con = db.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from user_manager where role='manager' and username='" + s + "' and password='" + s1 + "'");
 
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(null, " Welcome to the room Booking portal ", "WELCOME", JOptionPane.INFORMATION_MESSAGE);
+                    jf.setVisible(false);
+                    new MainMenu();
+                }
+
+                else {
+                    throw new Exception();
+                }
+            } catch (Exception e1) {
+                cnt++;
+                JOptionPane.showMessageDialog(null, " Sorry !!! You are not valid user ...!!!", "WARNING", JOptionPane.ERROR_MESSAGE);
+                t1.setText("");
+                p1.setText("");
+            }
+        }
     }
 
     public static void main(String args[])
