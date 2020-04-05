@@ -95,6 +95,12 @@ class Login extends JFrame implements ActionListener {
                 p1.setText("");
             }
         }
+        else if(ae.getSource()==b2)
+        {
+            t1.setText("");
+            p1.setText("");
+
+        }
     }
 
     public static void main(String args[])
