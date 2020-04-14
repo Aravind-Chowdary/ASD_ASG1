@@ -6,7 +6,7 @@ public class MainMenu extends JFrame implements ActionListener
 {
     JFrame jf;
     JMenuBar mbar;
-    JMenu m6;
+    JMenu m6,m7;
     GridBagLayout gbl;
     public MainMenu()
     {
@@ -18,6 +18,10 @@ public class MainMenu extends JFrame implements ActionListener
 
         m6=new JMenu("RoomType");
         mbar.add(m6);
+
+        m7=new JMenu("Rooms");
+        mbar.add(m6);
+
         jf.setLayout(gbl);
         jf.setTitle("Main Menu");
         jf.setLocation(20,20);
