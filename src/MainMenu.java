@@ -5,11 +5,19 @@ import java.awt.event.*;
 public class MainMenu extends JFrame implements ActionListener
 {
     JFrame jf;
+    JMenuBar mbar;
+    JMenu m6;
     GridBagLayout gbl;
     public MainMenu()
     {
         jf=new JFrame();
-        gbl=new GridBagLayout();
+        gbl=new GridBagLayout(); // This Layout is used to place the components in a grid of rows and columns.
+
+        mbar = new JMenuBar();
+        jf.setJMenuBar(mbar);
+
+        m6=new JMenu("RoomType");
+        mbar.add(m6);
         jf.setLayout(gbl);
         jf.setTitle("Main Menu");
         jf.setLocation(20,20);
