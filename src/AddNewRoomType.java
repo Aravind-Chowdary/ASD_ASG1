@@ -7,7 +7,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
     JFrame jf;
     JLabel l2;
     JTextField t2;
-    JButton b0;
+    JButton b0,b1,b2;
     AddNewRoomType()
     {
         jf=new JFrame();
@@ -21,10 +21,21 @@ public class AddNewRoomType extends JFrame implements ActionListener
         t2=new JTextField(20);
         t2.setBounds(320,160,200,25);t2.setToolTipText("Enter Room Type Name");
         jf.add(t2);
+
         b0 = new JButton("Save");
         b0.setBounds(250,250,110,35);
         b0.setToolTipText("Click to Save Room Type details");
         jf.add(b0);
+
+        b1 = new JButton("Clear");
+        b1.setBounds(300,230,110,35);
+        b1.setToolTipText("Click to Clear all TextFields");
+        jf.add(b1);
+
+        b2= new JButton("All");
+        b2.setBounds(450,230,110,35);
+        b2.setToolTipText("Click to View all Room Type Details");
+        jf.add(b2);
 
         jf.setTitle("Add New Room Type");
         jf.setLocation(20,20);
