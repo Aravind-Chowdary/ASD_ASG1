@@ -7,7 +7,7 @@ public class MainMenu extends JFrame implements ActionListener
     JFrame jf;
     JMenuBar mbar;
     JMenu m6,m7;
-    JMenuItem m6_1,m6_2;
+    JMenuItem m6_1,m6_2,m7_1,m7_2;
     GridBagLayout gbl;
     public MainMenu()
     {
@@ -23,8 +23,15 @@ public class MainMenu extends JFrame implements ActionListener
         m6.add(m6_1);
         m6_2 = new JMenuItem("Manage Room Type");
         m6.add(m6_2);
+
+
         m7=new JMenu("Rooms");
-        mbar.add(m6);
+        mbar.add(m7);
+        m7_1 = new JMenuItem("Add New Room");
+        m7.add(m7_1);
+        m7_2 = new JMenuItem("Manage Room");
+        m7.add(m7_2);
+
 
         jf.setLayout(gbl);
         jf.setTitle("Main Menu");
