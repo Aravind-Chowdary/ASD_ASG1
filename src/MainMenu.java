@@ -33,6 +33,13 @@ public class MainMenu extends JFrame implements ActionListener
         m7.add(m7_2);
 
 
+        m6_1.addActionListener(this);
+        m6_2.addActionListener(this);
+
+
+        m7_1.addActionListener(this);
+        m7_2.addActionListener(this);
+
         jf.setLayout(gbl);
         jf.setTitle("Main Menu");
         jf.setLocation(20,20);
@@ -46,6 +53,24 @@ public class MainMenu extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent e) {
 
+        if(e.getSource()==m6_1)
+        {
+            new AddNewRoomType();
+        }
+        else if(e.getSource()==m6_2)
+        {
+            new UpdateRoomType();
+        }
+
+
+        else if(e.getSource()==m7_1)
+        {
+            new AddNewRoom();
+        }
+        else if(e.getSource()==m7_2)
+        {
+            new UpdateRoom();
+        }
     }
     public static void main(String args[])
     {
