@@ -9,11 +9,9 @@ public class DB {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://selene.hud.ac.uk/u1950905","u1950905","AK06mar19hj");
-            if (con != null) {
-                System.out.println("yes");
             }
 
-        }catch(Exception e){System.out.println(e);}
+        catch(Exception e){System.out.println(e);}
         return con;
     }
     public ImageIcon getImage(String str)
