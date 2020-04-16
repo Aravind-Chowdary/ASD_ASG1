@@ -2,6 +2,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class AddNewRoomType extends JFrame implements ActionListener
 {
@@ -12,6 +15,9 @@ public class AddNewRoomType extends JFrame implements ActionListener
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
+    Connection con;
+    DB db = null;
+    PreparedStatement ps;
     AddNewRoomType()
     {
         jf=new JFrame();
@@ -65,7 +71,16 @@ public class AddNewRoomType extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(this,"* Please enter the Room type!","Warning!!!",JOptionPane.WARNING_MESSAGE);
             }
             else{
-
+                try {
+                    con = db.getConnection();
+                    System.out.println("Connected to database.");
+                    ps = con.prepareStatement("insert into typemaster (roomtype)values(?)");
+                    ps.setString(1, t2.getText());
+                    ps.executeUpdate();
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         else if(ae.getSource()==b1)
