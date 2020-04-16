@@ -2,8 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.sql.SQLException;
 
 public class AddNewRoomType extends JFrame implements ActionListener
