@@ -30,7 +30,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
         b0.setBounds(150,230,110,35);
         b0.setToolTipText("Click to Save Room Type details");
         jf.add(b0);
-
+        b0.addActionListener(this);
         b1 = new JButton("Clear");
         b1.setBounds(300,230,110,35);
         b1.setToolTipText("Click to Clear all TextFields");
@@ -60,7 +60,13 @@ public class AddNewRoomType extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource()==b0)
         {
+            if(((t2.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"* Please enter the Room type!","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            else{
 
+            }
         }
         else if(ae.getSource()==b1)
         {
