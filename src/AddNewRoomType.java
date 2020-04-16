@@ -41,7 +41,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
         b2.setToolTipText("Click to View all Room Type Details");
         jf.add(b2);
 
-        scrlPane.setBounds(80,380,900,600);
+        scrlPane.setBounds(80,380,600,300);
         jf.add(scrlPane);
         tabGrid.setFont(new Font ("Times New Roman",0,15));
 
