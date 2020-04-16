@@ -57,8 +57,19 @@ public class AddNewRoomType extends JFrame implements ActionListener
     }
 
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource()==b0)
+        {
 
+        }
+        else if(ae.getSource()==b1)
+        {
+
+        }
+        else if(ae.getSource()==b2)
+        {
+
+        }
     }
     public static void main(String args[])
     {
