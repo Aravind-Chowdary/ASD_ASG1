@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,6 +9,9 @@ public class AddNewRoomType extends JFrame implements ActionListener
     JLabel l2;
     JTextField t2;
     JButton b0,b1,b2;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     AddNewRoomType()
     {
         jf=new JFrame();
@@ -23,7 +27,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
         jf.add(t2);
 
         b0 = new JButton("Save");
-        b0.setBounds(250,250,110,35);
+        b0.setBounds(150,230,110,35);
         b0.setToolTipText("Click to Save Room Type details");
         jf.add(b0);
 
@@ -37,6 +41,12 @@ public class AddNewRoomType extends JFrame implements ActionListener
         b2.setToolTipText("Click to View all Room Type Details");
         jf.add(b2);
 
+        scrlPane.setBounds(80,380,900,600);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("ID");
+        model.addColumn("ROOMTYPE");
         jf.setTitle("Add New Room Type");
         jf.setLocation(20,20);
         jf.setResizable(false);
