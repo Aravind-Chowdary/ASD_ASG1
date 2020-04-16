@@ -84,7 +84,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
         }
         else if(ae.getSource()==b1)
         {
-
+            t2.setText("");
         }
         else if(ae.getSource()==b2)
         {
