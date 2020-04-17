@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class UpdateRoomType extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1;
+    JLabel l1,l2;
     UpdateRoomType()
     {
         jf=new JFrame();
@@ -17,6 +17,11 @@ public class UpdateRoomType extends JFrame implements ActionListener
         //l1.setFont(f);
         l1.setBounds(150,120,130,25);
         jf.add(l1);
+        
+        l2 = new JLabel(" Room Type Name*");
+        //l2.setFont(f);
+        l2.setBounds(150,160,170,25);
+        jf.add(l2);
 
         jf.setTitle("Update Zone");
         // jf.setSize(900,700);
