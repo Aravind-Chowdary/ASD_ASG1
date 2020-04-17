@@ -88,7 +88,11 @@ public class AddNewRoomType extends JFrame implements ActionListener
         }
         else if(ae.getSource()==b2)
         {
-
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }
         }
     }
     public static void main(String args[])
