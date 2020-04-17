@@ -17,6 +17,8 @@ public class AddNewRoomType extends JFrame implements ActionListener
     Connection con;
     DB db = null;
     PreparedStatement ps;
+    Statement stmt;
+    ResultSet rs;
     AddNewRoomType()
     {
         jf=new JFrame();
@@ -92,6 +94,24 @@ public class AddNewRoomType extends JFrame implements ActionListener
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
                     model.removeRow(i);
                 }
+            }
+            int r = 0;
+            try
+            {
+                con=db.getConnection();
+                System.out.println("Connected to database.");
+                stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                rs = stmt.executeQuery("select * from typemaster order by roomtype asc" );
+                while(rs.next())
+                {
+                    model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2) });
+                }
+                con.close();
+            }
+            catch(SQLException se)
+            {
+                System.out.println(se);
+                JOptionPane.showMessageDialog(null,"SQL Error:"+se);
             }
         }
     }
