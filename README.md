@@ -3,4 +3,6 @@
 
 **DB.java** This code is to establish the connection to the login page and mysql database
 
-**MainMenu.Java**
+**MainMenu.Java** This code is the implementaons of the main menu page
+
+
