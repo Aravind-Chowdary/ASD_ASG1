@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,9 @@ public class UpdateRoomType extends JFrame implements ActionListener
     JLabel l1,l2;
     JTextField t1,t2;
     JButton b0,b1,b2,b3,b4;
-
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     UpdateRoomType()
     {
         jf=new JFrame();
@@ -55,6 +58,14 @@ public class UpdateRoomType extends JFrame implements ActionListener
         b4 = new JButton("Delete");
         b4.setBounds(750,230,110,35);
         jf.add(b4);
+
+
+        scrlPane.setBounds(80,380,600,300);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("Room_Type_ID");
+        model.addColumn("Room_Type_NAME");
 
         jf.setTitle("Update Zone");
         // jf.setSize(900,700);
