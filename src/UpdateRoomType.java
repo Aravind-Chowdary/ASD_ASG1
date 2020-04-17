@@ -8,7 +8,7 @@ public class UpdateRoomType extends JFrame implements ActionListener
     JFrame jf;
     JLabel l1,l2;
     JTextField t1,t2;
-    JButton b0;
+    JButton b0,b1;
 
     UpdateRoomType()
     {
@@ -39,7 +39,12 @@ public class UpdateRoomType extends JFrame implements ActionListener
         b0 = new JButton("Open");
         b0.setBounds(150,230,110,35);
         jf.add(b0);
-        
+
+        b1 = new JButton("Update");
+        b1.setBounds(300,230,110,35);
+        jf.add(b1);
+
+
         jf.setTitle("Update Zone");
         // jf.setSize(900,700);
         jf.setLocation(20,20);
