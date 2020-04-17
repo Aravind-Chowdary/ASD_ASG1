@@ -82,6 +82,11 @@ public class AddNewRoomType extends JFrame implements ActionListener
                 catch (SQLException e) {
                     e.printStackTrace();
                 }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
             }
         }
         else if(ae.getSource()==b1)
