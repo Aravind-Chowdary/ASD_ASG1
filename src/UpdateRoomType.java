@@ -6,11 +6,17 @@ import java.awt.event.ActionListener;
 public class UpdateRoomType extends JFrame implements ActionListener
 {
     JFrame jf;
+    JLabel l1;
     UpdateRoomType()
     {
         jf=new JFrame();
         Dimension screen= Toolkit.getDefaultToolkit().getScreenSize();
         jf.setLayout(null);
+
+        l1= new JLabel("Room Type id *");
+        //l1.setFont(f);
+        l1.setBounds(150,120,130,25);
+        jf.add(l1);
 
         jf.setTitle("Update Zone");
         // jf.setSize(900,700);
