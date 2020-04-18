@@ -78,6 +78,17 @@ public class UpdateRoomType extends JFrame implements ActionListener
     }
     public void actionPerformed(ActionEvent ae)
     {
+        if(ae.getSource()==b0)
+        {
+            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter room type id or name !","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+
+            }
+        }
+
 
     }
     public static void main(String args[])
