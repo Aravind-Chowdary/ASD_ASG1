@@ -3,6 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class UpdateRoomType extends JFrame implements ActionListener
 {
@@ -13,6 +14,8 @@ public class UpdateRoomType extends JFrame implements ActionListener
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
+    Connection con;
+    DB db =null;
     UpdateRoomType()
     {
         jf=new JFrame();
@@ -85,8 +88,15 @@ public class UpdateRoomType extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(this,"Please enter room type id or name !","Warning!!!",JOptionPane.WARNING_MESSAGE);
             }
             else{
-
+                try {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                } catch (Exception se) {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
             }
+
         }
 
 
