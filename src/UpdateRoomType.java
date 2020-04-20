@@ -139,6 +139,12 @@ public class UpdateRoomType extends JFrame implements ActionListener
                 {
                     con=db.getConnection();
                     System.out.println("Connected to database.");
+                    stmt=con.createStatement();
+                    String str1="UPDATE typemaster SET roomtype='"+t2.getText()+"' where id="+t1.getText()+"  ";
+                    stmt.executeUpdate(str1);
+                    JOptionPane.showMessageDialog(null, "Record is updated");
+                    t1.setText("");
+                    t2.setText("");
                     con.close();
                 }
                 catch(SQLException se)
