@@ -145,6 +145,11 @@ public class UpdateRoomType extends JFrame implements ActionListener
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
+                    ps=con.prepareStatement("delete from typemaster where id='"+t1.getText()+"' or roomtype='"+t2.getText()+"'");
+                    ps.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Record is deleted.");
+                    t1.setText("");
+                    t2.setText("");
                     con.close();
                 }
                 catch(SQLException se)
