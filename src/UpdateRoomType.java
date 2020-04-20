@@ -18,6 +18,7 @@ public class UpdateRoomType extends JFrame implements ActionListener
     DB db =null;
     PreparedStatement ps;
     ResultSet rs;
+    Statement stmt;
     UpdateRoomType()
     {
         jf=new JFrame();
@@ -122,9 +123,23 @@ public class UpdateRoomType extends JFrame implements ActionListener
                     JOptionPane.showMessageDialog(null,"Error:"+e);
                 }
             }
-
         }
+        else if(ae.getSource()==b1)
+        {//update
 
+
+
+            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter  id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+
+
+            else
+            {
+
+            }
+        }
 
     }
     public static void main(String args[])
