@@ -89,8 +89,9 @@ public class UpdateRoomType extends JFrame implements ActionListener
             {
                 JOptionPane.showMessageDialog(this,"Please enter room type id or name !","Warning!!!",JOptionPane.WARNING_MESSAGE);
             }
-            else{
-                try {
+            else {
+                try
+                {
                     int foundrec = 0;
                     con=db.getConnection();
                     System.out.println("Connected to database.");
@@ -108,10 +109,17 @@ public class UpdateRoomType extends JFrame implements ActionListener
                         JOptionPane.showMessageDialog(null,"Record is not available","Dialog",JOptionPane.WARNING_MESSAGE);
                     }
                     con.close();
+                }
 
-                } catch (Exception se) {
+                catch(SQLException se)
+                {
                     System.out.println(se);
                     JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
                 }
             }
 
