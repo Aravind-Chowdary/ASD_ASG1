@@ -142,6 +142,16 @@ public class UpdateRoomType extends JFrame implements ActionListener
             if (((t1.getText()).equals("")) && ((t2.getText()).equals(""))) {
                 JOptionPane.showMessageDialog(this, "Please enter  id or name !", "Warning!!!", JOptionPane.ERROR_MESSAGE);
             } else {
+                try {
+                    con = db.getConnection();
+                    System.out.println("Connected to database.");
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
 
             }
         }
