@@ -16,6 +16,8 @@ public class UpdateRoomType extends JFrame implements ActionListener
     JScrollPane scrlPane = new JScrollPane(tabGrid);
     Connection con;
     DB db =null;
+    PreparedStatement ps;
+    ResultSet rs;
     UpdateRoomType()
     {
         jf=new JFrame();
@@ -89,8 +91,24 @@ public class UpdateRoomType extends JFrame implements ActionListener
             }
             else{
                 try {
+                    int foundrec = 0;
                     con=db.getConnection();
                     System.out.println("Connected to database.");
+                    ps=con.prepareStatement("select * from typemaster where id='"+t1.getText()+"' or roomtype='"+t2.getText()+"'");
+                    rs=ps.executeQuery();
+                    while(rs.next())
+                    {
+                        t1.setText(rs.getString(1));
+                        t2.setText(rs.getString(2));
+
+                        foundrec = 1;
+                    }
+                    if (foundrec == 0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Record is not available","Dialog",JOptionPane.WARNING_MESSAGE);
+                    }
+                    con.close();
+
                 } catch (Exception se) {
                     System.out.println(se);
                     JOptionPane.showMessageDialog(null,"SQL Error:"+se);
