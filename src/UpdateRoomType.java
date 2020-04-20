@@ -159,7 +159,12 @@ public class UpdateRoomType extends JFrame implements ActionListener
                 }
             }
         }
+        else if(ae.getSource()==b2)
+        {
+            t1.setText("");
+            t2.setText("");
 
+        }
     }
     public static void main(String args[])
     {
