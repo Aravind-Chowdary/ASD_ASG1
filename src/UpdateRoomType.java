@@ -133,11 +133,19 @@ public class UpdateRoomType extends JFrame implements ActionListener
             {
                 JOptionPane.showMessageDialog(this,"Please enter  id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
             }
-
-
             else
             {
-
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
             }
         }
 
