@@ -82,88 +82,68 @@ public class UpdateRoomType extends JFrame implements ActionListener
         jf.setBounds(0,0,screenSize.width, screenSize.height-50);
         jf.setVisible(true);
     }
-    public void actionPerformed(ActionEvent ae)
-    {
-        if(ae.getSource()==b0)
-        {
-            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
-            {
-                JOptionPane.showMessageDialog(this,"Please enter room type id or name !","Warning!!!",JOptionPane.WARNING_MESSAGE);
-            }
-            else {
-                try
-                {
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b0) {
+            if (((t1.getText()).equals("")) && ((t2.getText()).equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter room type id or name !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
                     int foundrec = 0;
-                    con=db.getConnection();
+                    con = db.getConnection();
                     System.out.println("Connected to database.");
-                    ps=con.prepareStatement("select * from typemaster where id='"+t1.getText()+"' or roomtype='"+t2.getText()+"'");
-                    rs=ps.executeQuery();
-                    while(rs.next())
-                    {
+                    ps = con.prepareStatement("select * from typemaster where id='" + t1.getText() + "' or roomtype='" + t2.getText() + "'");
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
                         t1.setText(rs.getString(1));
                         t2.setText(rs.getString(2));
 
                         foundrec = 1;
                     }
-                    if (foundrec == 0)
-                    {
-                        JOptionPane.showMessageDialog(null,"Record is not available","Dialog",JOptionPane.WARNING_MESSAGE);
+                    if (foundrec == 0) {
+                        JOptionPane.showMessageDialog(null, "Record is not available", "Dialog", JOptionPane.WARNING_MESSAGE);
                     }
                     con.close();
-                }
-
-                catch(SQLException se)
-                {
+                } catch (SQLException se) {
                     System.out.println(se);
-                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
-                }
-                catch(Exception e)
-                {
+                    JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+                } catch (Exception e) {
                     System.out.println(e);
-                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                    JOptionPane.showMessageDialog(null, "Error:" + e);
                 }
             }
-        }
-        else if(ae.getSource()==b1)
-        {//update
+        } else if (ae.getSource() == b1) {//update
 
 
-
-            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
-            {
-                JOptionPane.showMessageDialog(this,"Please enter  id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-                try
-                {
-                    con=db.getConnection();
+            if (((t1.getText()).equals("")) && ((t2.getText()).equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter  id or name !", "Warning!!!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    con = db.getConnection();
                     System.out.println("Connected to database.");
-                    stmt=con.createStatement();
-                    String str1="UPDATE typemaster SET roomtype='"+t2.getText()+"' where id="+t1.getText()+"  ";
+                    stmt = con.createStatement();
+                    String str1 = "UPDATE typemaster SET roomtype='" + t2.getText() + "' where id=" + t1.getText() + "  ";
                     stmt.executeUpdate(str1);
                     JOptionPane.showMessageDialog(null, "Record is updated");
                     t1.setText("");
                     t2.setText("");
                     con.close();
-                }
-                catch(SQLException se)
-                {
+                } catch (SQLException se) {
                     System.out.println(se);
-                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
-                }
-                catch(Exception e)
-                {
+                    JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+                } catch (Exception e) {
                     System.out.println(e);
-                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                    JOptionPane.showMessageDialog(null, "Error:" + e);
                 }
             }
-        }
-        else if(ae.getSource()==b2)
-        {
+        } else if (ae.getSource() == b2) {
             t1.setText("");
             t2.setText("");
+        } else if (ae.getSource() == b4) {//delete
+            if (((t1.getText()).equals("")) && ((t2.getText()).equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter  id or name !", "Warning!!!", JOptionPane.ERROR_MESSAGE);
+            } else {
 
+            }
         }
     }
     public static void main(String args[])
