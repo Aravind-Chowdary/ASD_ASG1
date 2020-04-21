@@ -8,7 +8,7 @@ public class AddNewRoom extends JFrame implements ActionListener
     Font f;
     JLabel l2,l3,l4,l5,l6,l7;
     JTextField t2,t3,t4,t5,t7;
-
+    JButton b0;
     AddNewRoom(){
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
@@ -67,6 +67,12 @@ public class AddNewRoom extends JFrame implements ActionListener
         t7.setBounds(320,320,250,25);
         t7.setToolTipText("Time");
         jf.add(t7);
+
+        b0 = new JButton("Save");
+        b0.setBounds(150,390,110,35);
+        b0.setToolTipText("click to save room details");
+        jf.add(b0);b0.addActionListener(this);
+
 
         jf.setTitle("Add New Room");
         //jf.setSize(900,700);
