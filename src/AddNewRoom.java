@@ -6,8 +6,8 @@ public class AddNewRoom extends JFrame implements ActionListener
 {
     JFrame jf;
     Font f;
-    JLabel l2,l3;
-    JTextField t2,t3;
+    JLabel l2,l3,l4;
+    JTextField t2,t3,t4;
     AddNewRoom(){
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
@@ -30,6 +30,15 @@ public class AddNewRoom extends JFrame implements ActionListener
         t3.setBounds(320,200,250,25);
         t3.setToolTipText("Enter Room Size");
         jf.add(t3);
+
+        l4 = new JLabel("Availbility*");
+        //l3.setFont(f);
+        l4.setBounds(150,240,170,25);
+        jf.add(l4);
+
+        t4=new JTextField(20);
+        t4.setBounds(320,240,250,25);t4.setToolTipText("Availbility");
+        jf.add(t4);
 
         jf.setTitle("Add New Room");
         //jf.setSize(900,700);
