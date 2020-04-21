@@ -6,12 +6,18 @@ public class AddNewRoom extends JFrame implements ActionListener
 {
     JFrame jf;
     Font f;
-    JLabel l2,l3,l4,l5;
-    JTextField t2,t3,t4,t5;
+    JLabel l2,l3,l4,l5,l6,l7;
+    JTextField t2,t3,t4,t5,t7;
+
     AddNewRoom(){
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
+
+        l6=new JLabel("Add New Room");
+        l6.setFont(new Font("Times New Roman",Font.BOLD,25));
+        l6.setBounds(150,100,300,40);l6.setForeground(Color.black);
+        jf.add(l6);
 
         l2 = new JLabel("Room name*");
         l2.setBounds(150,160,170,25);
@@ -37,7 +43,8 @@ public class AddNewRoom extends JFrame implements ActionListener
         jf.add(l4);
 
         t4=new JTextField(20);
-        t4.setBounds(320,240,250,25);t4.setToolTipText("Availbility");
+        t4.setBounds(320,240,250,25);
+        t4.setToolTipText("Availbility");
         jf.add(t4);
 
         l5 = new JLabel("Date*");
@@ -45,9 +52,22 @@ public class AddNewRoom extends JFrame implements ActionListener
         l5.setBounds(150,280,170,25);
         jf.add(l5);
 
+
         t5=new JTextField(20);
-        t5.setBounds(320,280,250,25);t5.setToolTipText("Date");
+        t5.setBounds(320,280,250,25);
+        t5.setToolTipText("Date");
         jf.add(t5);
+
+        l7 = new JLabel("Time*");
+        //l3.setFont(f);
+        l7.setBounds(150,320,170,25);
+        jf.add(l7);
+
+        t7=new JTextField(20);
+        t7.setBounds(320,320,250,25);
+        t7.setToolTipText("Time");
+        jf.add(t7);
+
         jf.setTitle("Add New Room");
         //jf.setSize(900,700);
         jf.setLocation(20,20);
