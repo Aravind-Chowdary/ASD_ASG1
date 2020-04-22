@@ -20,6 +20,7 @@ public class AddNewRoom extends JFrame implements ActionListener
     Connection con;
     Statement stmt;
     ResultSet rs;
+    PreparedStatement ps;
     AddNewRoom(){
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
@@ -155,6 +156,15 @@ public class AddNewRoom extends JFrame implements ActionListener
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
+                    ps=con.prepareStatement("insert into room_manager (rtitle,room_size,type,availability,adate,atime)values(?,?,?,?,?,?)");
+                    ps.setString(1,t2.getText());
+                    ps.setString(2,t3.getText());
+                    ps.setString(3,c1.getSelectedItem().toString());
+                    ps.setString(4,t4.getText());
+                    ps.setString(5,t5.getText());
+                    ps.setString(6,t7.getText());
+
+                    ps.executeUpdate();
                     con.close();
                 } catch (SQLException se) {
                     System.out.println(se);
