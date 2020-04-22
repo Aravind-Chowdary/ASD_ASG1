@@ -156,13 +156,13 @@ public class AddNewRoom extends JFrame implements ActionListener
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
-                    ps=con.prepareStatement("insert into room_manager (rtitle,room_size,type,availability,adate,atime)values(?,?,?,?,?,?)");
-                    ps.setString(1,t2.getText());
-                    ps.setString(2,t3.getText());
-                    ps.setString(3,c1.getSelectedItem().toString());
-                    ps.setString(4,t4.getText());
-                    ps.setString(5,t5.getText());
-                    ps.setString(6,t7.getText());
+                    ps = con.prepareStatement("insert into room_manager (rtitle,room_size,type,availability,adate,atime)values(?,?,?,?,?,?)");
+                    ps.setString(1, t2.getText());
+                    ps.setString(2, t3.getText());
+                    ps.setString(3, c1.getSelectedItem().toString());
+                    ps.setString(4, t4.getText());
+                    ps.setString(5, t5.getText());
+                    ps.setString(6, t7.getText());
 
                     ps.executeUpdate();
                     con.close();
@@ -173,15 +173,30 @@ public class AddNewRoom extends JFrame implements ActionListener
 
 
             }
-        }
-
-        else if (ae.getSource() ==b1){
+        } else if (ae.getSource() == b1) {
             t2.setText("");
             t3.setText("");
             t4.setText("");
             t5.setText("");
-        }
+        } else if (ae.getSource() == b2) {
+            {//list
+                if (model.getRowCount() > 0) {
+                    for (int i = model.getRowCount() - 1; i > -1; i--) {
+                        model.removeRow(i);
+                    }
+                }
+                int r = 0;
+                try {
+                    con = db.getConnection();
+                    System.out.println("Connected to database.");
+                    con.close();
+                } catch (SQLException se) {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+                }
+            }
 
+        }
     }
     public static void main(String args[])
     {
