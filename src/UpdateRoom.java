@@ -5,11 +5,13 @@ import java.awt.*;
 public class UpdateRoom extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2;
-    JTextField t1,t2;
+    JLabel l1,l2,l3;
+    JTextField t1,t2,t3;
+    Font f;
     UpdateRoom()
     {
         jf = new JFrame();
+        f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
 
         l1= new JLabel("Room  id *");
@@ -27,9 +29,18 @@ public class UpdateRoom extends JFrame implements ActionListener
         jf.add(l2);
 
         t2=new JTextField(20);
-        t2.setBounds(320,160,250,25);t2.setToolTipText("Enter Room name");
+        t2.setBounds(320,160,250,25);
+        t2.setToolTipText("Enter Room name");
         jf.add(t2);
 
+        l3 = new JLabel("Room Size*");
+        //l3.setFont(f);
+        l3.setBounds(150,200,170,25);
+        jf.add(l3);
+
+        t3=new JTextField(20);
+        t3.setBounds(320,200,250,25);t3.setToolTipText("Enter Room Size");
+        jf.add(t3);
         jf.setTitle("Update Room");
         // jf.setSize(900,700);
         jf.setLocation(20,20);
