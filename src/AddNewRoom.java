@@ -97,10 +97,7 @@ public class AddNewRoom extends JFrame implements ActionListener
                 c1.addItem(mrd);
             }
 
-
-
             rs.close();
-
             con.close();
         }
         catch(Exception e)
@@ -149,7 +146,24 @@ public class AddNewRoom extends JFrame implements ActionListener
                 }
 
     public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b0) {
 
+
+            if (((t2.getText()).equals("")) || ((t3.getText()).equals("")) || ((t4.getText()).equals("")) || ((t5.getText()).equals("")) || (c1.getSelectedItem().toString().equals("select"))) {
+                JOptionPane.showMessageDialog(this, "* Detail are Missing !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
+                    con = db.getConnection();
+                    System.out.println("Connected to database.");
+                    con.close();
+                } catch (SQLException se) {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+                }
+
+
+            }
+        }
     }
     public static void main(String args[])
     {
