@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -8,12 +9,17 @@ public class AddNewRoom extends JFrame implements ActionListener
 {
     JFrame jf;
     Font f;
-    JLabel l2,l3,l4,l5,l6,l7;
+    JLabel l2,l3,l4,l5,l6,l7,l8;
     JTextField t2,t3,t4,t5,t7;
     JButton b0,b1,b2;
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
+    JComboBox c1;
+    DB db = null;
+    Connection con;
+    Statement stmt;
+    ResultSet rs;
     AddNewRoom(){
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
@@ -73,6 +79,37 @@ public class AddNewRoom extends JFrame implements ActionListener
         t7.setToolTipText("Time");
         jf.add(t7);
 
+        l8 = new JLabel("Type*");
+        //l3.setFont(f);
+        l8.setBounds(150,360,170,25);
+        jf.add(l8);
+
+        c1=new JComboBox();
+        c1.setBounds(320,360,250,25);
+        c1.setToolTipText("Enter Type");
+        c1.addItem("select");
+        try {
+            con=db.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("Select roomtype from typemaster");
+            while (rs.next()) {
+                String mrd = rs.getString("roomtype");
+                c1.addItem(mrd);
+            }
+
+
+
+            rs.close();
+
+            con.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        jf.add(c1);
+
         b0 = new JButton("Save");
         b0.setBounds(150,390,110,35);
         b0.setToolTipText("click to save room details");
@@ -111,7 +148,7 @@ public class AddNewRoom extends JFrame implements ActionListener
 
                 }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
 
     }
     public static void main(String args[])
