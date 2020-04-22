@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 public class AddNewRoom extends JFrame implements ActionListener
 {
     JFrame jf;
@@ -9,6 +11,9 @@ public class AddNewRoom extends JFrame implements ActionListener
     JLabel l2,l3,l4,l5,l6,l7;
     JTextField t2,t3,t4,t5,t7;
     JButton b0,b1,b2;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     AddNewRoom(){
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
@@ -84,6 +89,17 @@ public class AddNewRoom extends JFrame implements ActionListener
         b2.setToolTipText("click to view all room details");
         jf.add(b2);
 
+        scrlPane.setBounds(120,450,900,300);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("R_ID");
+        model.addColumn("TITLE");
+        model.addColumn("SIZE");
+        model.addColumn("TYPE");
+        model.addColumn("AVAILBILITY");
+        model.addColumn("DATE");
+        model.addColumn("TIME");
         jf.setTitle("Add New Room");
         //jf.setSize(900,700);
         jf.setLocation(20,20);
