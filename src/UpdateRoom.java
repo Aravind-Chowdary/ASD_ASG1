@@ -10,7 +10,7 @@ public class UpdateRoom extends JFrame implements ActionListener
     JFrame jf;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8;
     JTextField t1,t2,t3,t4,t5,t7;
-    JButton b0,b1,b2,b3;
+    JButton b0,b1,b2,b3,b4;
     Font f;
     JComboBox c1;
     Connection con;
@@ -129,6 +129,11 @@ public class UpdateRoom extends JFrame implements ActionListener
         b3.setBounds(600,390,110,35);
         b3.setToolTipText("click to view all room details");
         jf.add(b3);
+
+        b4 = new JButton("Delete");
+        b4.setBounds(750,390,110,35);
+        b4.setToolTipText("click to delete room details");
+        jf.add(b4);
 
         jf.setTitle("Update Room");
         // jf.setSize(900,700);
