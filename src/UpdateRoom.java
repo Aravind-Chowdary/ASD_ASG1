@@ -5,14 +5,19 @@ import java.awt.*;
 public class UpdateRoom extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3,l4,l5;
-    JTextField t1,t2,t3,t4,t5;
+    JLabel l1,l2,l3,l4,l5,l6,l7;
+    JTextField t1,t2,t3,t4,t5,t7;
     Font f;
     UpdateRoom()
     {
         jf = new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
+
+        l6=new JLabel("Update Rooms");
+        l6.setFont(new Font("Times New Roman",Font.BOLD,25));
+        l6.setBounds(150,70,300,40);l6.setForeground(Color.black);
+        jf.add(l6);
 
         l1= new JLabel("Room  id *");
         //l1.setFont(f);
@@ -62,6 +67,14 @@ public class UpdateRoom extends JFrame implements ActionListener
         t5.setBounds(320,280,250,25);t5.setToolTipText("Date");
         jf.add(t5);
 
+        l7 = new JLabel("Time*");
+        //l3.setFont(f);
+        l7.setBounds(150,320,170,25);
+        jf.add(l7);
+
+        t7=new JTextField(20);
+        t7.setBounds(320,320,250,25);t7.setToolTipText("Time");
+        jf.add(t7);
         jf.setTitle("Update Room");
         // jf.setSize(900,700);
         jf.setLocation(20,20);
