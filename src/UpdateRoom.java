@@ -5,8 +5,8 @@ import java.awt.*;
 public class UpdateRoom extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3,l4;
-    JTextField t1,t2,t3,t4;
+    JLabel l1,l2,l3,l4,l5;
+    JTextField t1,t2,t3,t4,t5;
     Font f;
     UpdateRoom()
     {
@@ -51,6 +51,16 @@ public class UpdateRoom extends JFrame implements ActionListener
         t4.setBounds(320,240,250,25);
         t4.setToolTipText("Availbility");
         jf.add(t4);
+
+
+        l5 = new JLabel("Date*");
+        //l3.setFont(f);
+        l5.setBounds(150,280,170,25);
+        jf.add(l5);
+
+        t5=new JTextField(20);
+        t5.setBounds(320,280,250,25);t5.setToolTipText("Date");
+        jf.add(t5);
 
         jf.setTitle("Update Room");
         // jf.setSize(900,700);
