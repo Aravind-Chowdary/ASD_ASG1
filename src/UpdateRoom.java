@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.awt.*;
 import java.sql.Connection;
@@ -16,6 +17,9 @@ public class UpdateRoom extends JFrame implements ActionListener
     Connection con;
     DB db = null;
     ResultSet rs;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     UpdateRoom()
     {
         jf = new JFrame();
@@ -135,6 +139,9 @@ public class UpdateRoom extends JFrame implements ActionListener
         b4.setToolTipText("click to delete room details");
         jf.add(b4);
 
+        scrlPane.setBounds(120,450,900,600);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
         jf.setTitle("Update Room");
         // jf.setSize(900,700);
         jf.setLocation(20,20);
