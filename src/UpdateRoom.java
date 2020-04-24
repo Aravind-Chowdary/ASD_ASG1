@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UpdateRoom extends JFrame implements ActionListener
@@ -157,7 +158,15 @@ public class UpdateRoom extends JFrame implements ActionListener
             if (((t1.getText()).equals("")) && ((t2.getText()).equals(""))) {
                 JOptionPane.showMessageDialog(this, "Please enter room id or name !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
             } else {
-
+                try {
+                    con = db.getConnection();
+                    System.out.println("Connected to database.");
+                    con.close();
+                } catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
             }
         }
     }
