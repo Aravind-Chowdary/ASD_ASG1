@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.*;
 import java.sql.*;
 
+
 public class UpdateRoom extends JFrame implements ActionListener
 {
     JFrame jf;
@@ -144,9 +145,18 @@ public class UpdateRoom extends JFrame implements ActionListener
         b4.addActionListener(this);
         jf.add(b4);
 
-        scrlPane.setBounds(120,450,900,600);
+        scrlPane.setBounds(120,450,900,300);
         jf.add(scrlPane);
         tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("R_ID");
+        model.addColumn("TITLE");
+        model.addColumn("SIZE");
+        model.addColumn("TYPE");
+        model.addColumn("AVAILBILITY");
+        model.addColumn("DATE");
+        model.addColumn("TIME");
+
         jf.setTitle("Update Room");
         // jf.setSize(900,700);
         jf.setLocation(20,20);
