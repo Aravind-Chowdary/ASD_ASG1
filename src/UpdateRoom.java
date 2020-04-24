@@ -196,6 +196,14 @@ public class UpdateRoom extends JFrame implements ActionListener
                     JOptionPane.showMessageDialog(null,"SQL Error:"+se);
                 }
             }
+        }
+        else if(ae.getSource()==b2)
+        {//clear
+            t1.setText("");
+            t2.setText("");
+            t3.setText("");
+
+        }
     }
     public static void main(String args[])
     {
