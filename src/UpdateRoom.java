@@ -236,6 +236,13 @@ public class UpdateRoom extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null,"Error:"+e);
             }
         }
+        else if(ae.getSource()==b4) {//update
+
+
+            if (((t1.getText()).equals("")) || ((t2.getText()).equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter area id or name !", "Warning!!!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
     public static void main(String args[])
     {
