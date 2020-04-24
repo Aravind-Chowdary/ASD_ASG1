@@ -92,7 +92,7 @@ public class UpdateRoom extends JFrame implements ActionListener
         l8 = new JLabel("Type*");
         l8.setBounds(150,360,170,25);
         jf.add(l8);
-
+        db = new DB();
         c1=new JComboBox();
         c1.setBounds(320,360,250,25);c1.setToolTipText("Enter Type");
         c1.addItem("select");
