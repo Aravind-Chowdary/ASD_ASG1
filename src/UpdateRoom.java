@@ -204,6 +204,13 @@ public class UpdateRoom extends JFrame implements ActionListener
             t3.setText("");
 
         }
+        else if(ae.getSource()==b3) {//list
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }
+        }
     }
     public static void main(String args[])
     {
