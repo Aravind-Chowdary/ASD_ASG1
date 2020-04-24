@@ -211,6 +211,15 @@ public class UpdateRoom extends JFrame implements ActionListener
                 }
             }
         }
+        try {
+            con = db.getConnection();
+            System.out.println("Connected to database.");
+            con.close();
+        } catch(SQLException se)
+        {
+            System.out.println(se);
+            JOptionPane.showMessageDialog(null,"SQL Error"+se);
+        }
     }
     public static void main(String args[])
     {
