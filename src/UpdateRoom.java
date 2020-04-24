@@ -2,10 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UpdateRoom extends JFrame implements ActionListener
 {
@@ -21,6 +18,7 @@ public class UpdateRoom extends JFrame implements ActionListener
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
+    PreparedStatement ps;
     UpdateRoom()
     {
         jf = new JFrame();
@@ -118,26 +116,31 @@ public class UpdateRoom extends JFrame implements ActionListener
         b0 = new JButton("Open");
         b0.setBounds(150,390,110,35);
         b0.setToolTipText("click to open room details");
+        b0.addActionListener(this);
         jf.add(b0);
 
         b1 = new JButton("Update");
         b1.setBounds(300,390,110,35);
         b1.setToolTipText("click to update room details");
+        b1.addActionListener(this);
         jf.add(b1);
 
         b2 = new JButton("Clear");
         b2.setBounds(450,390,110,35);
         b2.setToolTipText("click to clear all");
+        b2.addActionListener(this);
         jf.add(b2);
 
         b3 = new JButton("All");
         b3.setBounds(600,390,110,35);
         b3.setToolTipText("click to view all room details");
+        b3.addActionListener(this);
         jf.add(b3);
 
         b4 = new JButton("Delete");
         b4.setBounds(750,390,110,35);
         b4.setToolTipText("click to delete room details");
+        b4.addActionListener(this);
         jf.add(b4);
 
         scrlPane.setBounds(120,450,900,600);
@@ -161,12 +164,24 @@ public class UpdateRoom extends JFrame implements ActionListener
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
+                    ps=con.prepareStatement("select * from room_manager where room_id='"+t1.getText()+"' or rtitle='"+t2.getText()+"'");
+                    rs=ps.executeQuery();
+                    while(rs.next())
                     con.close();
                 } catch(SQLException se)
                 {
                     System.out.println(se);
                     JOptionPane.showMessageDialog(null,"SQL Error:"+se);
                 }
+            }
+        }
+        else if (ae.getSource() == b1){
+            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter room id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+
             }
         }
     }
