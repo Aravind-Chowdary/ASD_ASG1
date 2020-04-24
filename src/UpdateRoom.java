@@ -173,6 +173,11 @@ public class UpdateRoom extends JFrame implements ActionListener
                     System.out.println(se);
                     JOptionPane.showMessageDialog(null,"SQL Error:"+se);
                 }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
             }
         }
         else if (ae.getSource() == b1){
@@ -195,6 +200,11 @@ public class UpdateRoom extends JFrame implements ActionListener
                     System.out.println(se);
                     JOptionPane.showMessageDialog(null,"SQL Error:"+se);
                 }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
             }
         }
         else if(ae.getSource()==b2)
@@ -210,15 +220,21 @@ public class UpdateRoom extends JFrame implements ActionListener
                     model.removeRow(i);
                 }
             }
-        }
-        try {
-            con = db.getConnection();
-            System.out.println("Connected to database.");
-            con.close();
-        } catch(SQLException se)
-        {
-            System.out.println(se);
-            JOptionPane.showMessageDialog(null,"SQL Error"+se);
+
+            try {
+                con = db.getConnection();
+                System.out.println("Connected to database.");
+                con.close();
+            } catch(SQLException se)
+            {
+                System.out.println(se);
+                JOptionPane.showMessageDialog(null,"SQL Error"+se);
+            }
+            catch(Exception e)
+            {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null,"Error:"+e);
+            }
         }
     }
     public static void main(String args[])
