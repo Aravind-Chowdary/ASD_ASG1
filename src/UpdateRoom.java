@@ -180,8 +180,9 @@ public class UpdateRoom extends JFrame implements ActionListener
             {
                 JOptionPane.showMessageDialog(this,"Please enter room id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
             }
-            else {
-
+            else if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t4.getText()).equals(""))||((t5.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.ERROR_MESSAGE);
             }
         }
     }
