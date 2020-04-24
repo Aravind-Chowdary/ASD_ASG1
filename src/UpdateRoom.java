@@ -152,8 +152,14 @@ public class UpdateRoom extends JFrame implements ActionListener
         jf.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b0) {
+            if (((t1.getText()).equals("")) && ((t2.getText()).equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter room id or name !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
+            } else {
 
+            }
+        }
     }
     public static void main(String args[])
     {
