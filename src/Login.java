@@ -63,7 +63,7 @@ class Login extends JFrame implements ActionListener {
         b2.setBackground(Color.WHITE);
         jf.add(b2);b2.addActionListener(this);
 
-        b3 = new JButton("Exit");
+        b3 = new JButton("Exit",db.getImage("images/exit.png"));
         b3.setBounds(440,400,100,35);
         b3.setBackground(Color.WHITE);
         jf.add(b3);b3.addActionListener(this);
