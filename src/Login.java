@@ -58,7 +58,7 @@ class Login extends JFrame implements ActionListener {
         b1.setBackground(Color.WHITE);
         jf.add(b1);b1.addActionListener(this);
 
-        b2 = new JButton("Clear");
+        b2 = new JButton("Clear",db.getImage("images/clear.png"));
         b2.setBounds(320,400,100,35);
         b2.setBackground(Color.WHITE);
         jf.add(b2);b2.addActionListener(this);
@@ -77,7 +77,7 @@ class Login extends JFrame implements ActionListener {
         jf.setLocation(20,20);
         jf.setSize(800,600);
         jf.setResizable(false);
-        jf.getContentPane().setBackground(Color.black);
+        jf.getContentPane().setBackground(Color.cyan);
         jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent ae) {
