@@ -53,7 +53,7 @@ class Login extends JFrame implements ActionListener {
         p1.setToolTipText("Enter Password");
         jf.add(p1);
 
-        b1 = new JButton("Login");
+        b1 = new JButton("Login",db.getImage("images/Login.png"));
         b1.setBounds(200,400,100,35);
         b1.setBackground(Color.WHITE);
         jf.add(b1);b1.addActionListener(this);
