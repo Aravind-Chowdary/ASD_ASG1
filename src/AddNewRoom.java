@@ -139,7 +139,7 @@ public class AddNewRoom extends JFrame implements ActionListener
         //jf.setSize(900,700);
         jf.setLocation(20,20);
         jf.setResizable(false);
-        jf.getContentPane().setBackground(Color.cyan);
+        jf.getContentPane().setBackground(Color.lightGray);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         jf.setBounds(0,0,screenSize.width, screenSize.height-50);
         jf.setVisible(true);
