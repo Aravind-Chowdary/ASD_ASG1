@@ -34,5 +34,11 @@ public class CRSHome extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(Color.cyan);
         setContentPane(contentPane);
+        JLabel lblLibraryManagement = new JLabel("College Room Booking System");
+        lblLibraryManagement.setFont(new Font("Times New Roman",Font.BOLD,30));
+
+        JButton btnAdminLogin = new JButton("Room Manager Login");
+        contentPane.add(btnAdminLogin);
+
     }
 }
