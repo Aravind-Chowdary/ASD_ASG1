@@ -31,7 +31,7 @@ public class MainMenu extends JFrame implements ActionListener
         mbar.add(m7);
         m7_1 = new JMenuItem("Add New Room",db.getImage("images/addnew.png"));
         m7.add(m7_1);
-        m7_2 = new JMenuItem("Manage Room");
+        m7_2 = new JMenuItem("Manage Room",db.getImage("images/update.png"));
         m7.add(m7_2);
 
 
