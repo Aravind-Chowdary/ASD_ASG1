@@ -23,13 +23,13 @@ public class MainMenu extends JFrame implements ActionListener
         mbar.add(m6);
         m6_1 = new JMenuItem("Add New RoomType",db.getImage("images/addnew.png"));
         m6.add(m6_1);
-        m6_2 = new JMenuItem("Manage Room Type");
+        m6_2 = new JMenuItem("Manage Room Type",db.getImage("images/update.png"));
         m6.add(m6_2);
 
 
         m7=new JMenu("Rooms");
         mbar.add(m7);
-        m7_1 = new JMenuItem("Add New Room");
+        m7_1 = new JMenuItem("Add New Room",db.getImage("images/addnew.png"));
         m7.add(m7_1);
         m7_2 = new JMenuItem("Manage Room");
         m7.add(m7_2);
