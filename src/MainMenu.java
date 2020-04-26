@@ -9,8 +9,10 @@ public class MainMenu extends JFrame implements ActionListener
     JMenu m6,m7;
     JMenuItem m6_1,m6_2,m7_1,m7_2;
     GridBagLayout gbl;
+    DB db=null;
     public MainMenu()
     {
+        db = new DB();
         jf=new JFrame();
         gbl=new GridBagLayout(); // This Layout is used to place the components in a grid of rows and columns.
 
@@ -19,7 +21,7 @@ public class MainMenu extends JFrame implements ActionListener
 
         m6=new JMenu("RoomType");
         mbar.add(m6);
-        m6_1 = new JMenuItem("Add New RoomType");
+        m6_1 = new JMenuItem("Add New RoomType",db.getImage("images/addnew.png"));
         m6.add(m6_1);
         m6_2 = new JMenuItem("Manage Room Type");
         m6.add(m6_2);
