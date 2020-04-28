@@ -75,5 +75,22 @@ public class CRSHome extends JFrame {
 
                                 .addContainerGap(95, Short.MAX_VALUE))
         );
-}
+        gl_contentPane.setVerticalGroup(
+                gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(gl_contentPane.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblLibraryManagement)
+                                .addGap(32)
+                                .addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(reports, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        contentPane.setLayout(gl_contentPane);
+
+    }
+
+
 }
