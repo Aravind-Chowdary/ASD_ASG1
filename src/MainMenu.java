@@ -119,7 +119,18 @@ public class MainMenu extends JFrame implements ActionListener
         {
             new UpdateUser();
         }
-
+        else if(e.getSource()==m10_1)
+        {
+            new AssignRoomAvailbility();
+        }
+        else if(e.getSource()==m10_2)
+        {
+            new AssignList();
+        }
+        else if(e.getSource()==m10_3)
+        {
+            new UpdateRoomAvaibility();
+        }
     }
     public static void main(String args[])
     {
