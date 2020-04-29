@@ -12,12 +12,16 @@ public class AddUser extends JFrame implements ActionListener
     JComboBox c1;
     JButton b0,b1,b2;
     DB db =null;
+    Font f;
     AddUser(){
         jf = new JFrame();
         jf.setLayout(null);
         db = new DB();
+        f = new Font("Times New Roman",Font.BOLD,20);
+
         l1=new JLabel("Add New User");
-        l1.setBounds(250,50,300,40);
+        l1.setBounds(150,90,300,40);
+        l1.setFont(new Font("Times New Roman",Font.BOLD,25));
         l1.setForeground(Color.blue);
         jf.add(l1);
 
