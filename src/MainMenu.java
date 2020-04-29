@@ -46,8 +46,10 @@ public class MainMenu extends JFrame implements ActionListener
         mbar.add(m8);
         m8_1 = new JMenuItem("Exit",db.getImage("images/exit.png"));
         m8.add(m8_1);
+        m8_1.addActionListener(this);
         m8_2 = new JMenuItem("Logout",db.getImage("images/pass.png"));
         m8.add(m8_2);
+        m8_2.addActionListener(this);
 
         jf.setLayout(gbl);
         jf.setTitle("Main Menu");
@@ -79,6 +81,15 @@ public class MainMenu extends JFrame implements ActionListener
         else if(e.getSource()==m7_2)
         {
             new UpdateRoom();
+        }
+        else if(e.getSource()==m8_1)
+        {
+            System.exit(0);
+        }
+        else if(e.getSource()==m8_2)
+        {
+            jf.setVisible(false);
+            new Login();
         }
     }
     public static void main(String args[])
