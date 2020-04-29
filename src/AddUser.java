@@ -12,6 +12,18 @@ public class AddUser extends JFrame implements ActionListener
     AddUser(){
         jf = new JFrame();
         jf.setLayout(null);
+        l1=new JLabel("Add New User");
+        l1.setBounds(250,50,300,40);
+        l1.setForeground(Color.blue);
+        jf.add(l1);
+
+        l2 = new JLabel("User Name*");
+        l2.setBounds(150,160,170,25);
+        jf.add(l2);
+
+        t2=new JTextField(20);
+        t2.setBounds(320,160,250,25);t2.setToolTipText("Enter user name");
+        jf.add(t2);
 
         jf.setTitle("Add New User");
         jf.setLocation(20,20);
