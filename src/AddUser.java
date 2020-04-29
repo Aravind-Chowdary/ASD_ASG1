@@ -3,6 +3,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddUser extends JFrame implements ActionListener
 {
@@ -13,6 +17,7 @@ public class AddUser extends JFrame implements ActionListener
     JComboBox c1;
     JButton b0,b1,b2;
     DB db =null;
+    Connection con;
     Font f;
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
@@ -97,7 +102,26 @@ public class AddUser extends JFrame implements ActionListener
         jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent e) {
+        String email = t5.getText();
+        Pattern p = Pattern.compile("[_a-z_A-Z_0-9]+[0-9]*@[a-zA-Z0-9]+.[a-zA-Z0-9]+");
+        Matcher m = p.matcher(email);
+        boolean matchFound = m.matches();
 
+        if (((t2.getText()).equals("")) || ((t3.getText()).equals("")) || ((t5.getText()).equals(""))) {
+            JOptionPane.showMessageDialog(this, "* Detail are Missing !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
+        } else if (!matchFound) {
+            JOptionPane.showMessageDialog(this, "Invalid email id!", "Warning!!!", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                con = db.getConnection();
+                System.out.println("Connected to database.");
+                con.close();
+            } catch(SQLException se)
+            {
+                System.out.println(se);
+                JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+            }
+        }
     }
     public static void main(String args[])
     {
