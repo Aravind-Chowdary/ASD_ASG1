@@ -7,8 +7,9 @@ public class AddUser extends JFrame implements ActionListener
 {
 
     JFrame jf;
-    JLabel l1,l2,l3;
+    JLabel l1,l2,l3,l4;
     JTextField t2,t3;
+    JComboBox c1;
     AddUser(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -33,6 +34,17 @@ public class AddUser extends JFrame implements ActionListener
         t3=new JPasswordField(20);
         t3.setBounds(320,200,250,25);t3.setToolTipText("Enter Password");
         jf.add(t3);
+
+        l4 = new JLabel("Select Role*");
+        l4.setBounds(150,240,170,25);
+        jf.add(l4);
+
+        c1=new JComboBox();
+        c1.setBounds(320,240,250,25);c1.setToolTipText("Select Type");
+        c1.addItem("select");
+        c1.addItem("manager");
+        c1.addItem("clerk");
+        jf.add(c1);
 
         jf.setTitle("Add New User");
         jf.setLocation(20,20);
