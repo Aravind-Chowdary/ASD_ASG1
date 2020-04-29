@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,9 @@ public class AddUser extends JFrame implements ActionListener
     JButton b0,b1,b2;
     DB db =null;
     Font f;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     AddUser(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -74,6 +78,15 @@ public class AddUser extends JFrame implements ActionListener
         b2.setBounds(450,350,110,35);b2.setToolTipText("click to view all User details");
         jf.add(b2); b2.addActionListener(this);
 
+        scrlPane.setBounds(80,420,900,340);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("U_ID");
+        model.addColumn("USER_NAME");
+        model.addColumn("USER_PASSWORD");
+        model.addColumn("USER_ROLE");
+        model.addColumn("USER_EMAIL");
 
         jf.setTitle("Add New User");
         jf.setLocation(20,20);
