@@ -46,8 +46,12 @@ public class MainMenu extends JFrame implements ActionListener
         mbar.add(m9);
         m9_1 = new JMenuItem("Add Clerks",db.getImage("images/addnew.png"));
         m9.add(m9_1);
+
         m9_2 = new JMenuItem("Manage Clerks",db.getImage("images/update.png"));
         m9.add(m9_2);
+
+        m9_1.addActionListener(this);
+        m9_2.addActionListener(this);
 
         m8=new JMenu("Exit");
         mbar.add(m8);
@@ -97,6 +101,14 @@ public class MainMenu extends JFrame implements ActionListener
         {
             jf.setVisible(false);
             new Login();
+        }
+        else if(e.getSource()==m9_1)
+        {
+            new AddUser();
+        }
+        else if(e.getSource()==m9_2)
+        {
+            new UpdateUser();
         }
     }
     public static void main(String args[])
