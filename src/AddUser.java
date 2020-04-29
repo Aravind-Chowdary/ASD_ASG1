@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,6 +19,7 @@ public class AddUser extends JFrame implements ActionListener
     JButton b0,b1,b2;
     DB db =null;
     Connection con;
+    PreparedStatement ps;
     Font f;
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
@@ -102,24 +104,56 @@ public class AddUser extends JFrame implements ActionListener
         jf.setVisible(true);
     }
     public void actionPerformed(ActionEvent e) {
-        String email = t5.getText();
-        Pattern p = Pattern.compile("[_a-z_A-Z_0-9]+[0-9]*@[a-zA-Z0-9]+.[a-zA-Z0-9]+");
-        Matcher m = p.matcher(email);
-        boolean matchFound = m.matches();
+        if(e.getSource()==b0)
+        {
+            String email=t5.getText();
+            Pattern p=Pattern.compile("[_a-z_A-Z_0-9]+[0-9]*@[a-zA-Z0-9]+.[a-zA-Z0-9]+");
+            Matcher m=p.matcher(email);
+            boolean matchFound=m.matches();
 
-        if (((t2.getText()).equals("")) || ((t3.getText()).equals("")) || ((t5.getText()).equals(""))) {
-            JOptionPane.showMessageDialog(this, "* Detail are Missing !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
-        } else if (!matchFound) {
-            JOptionPane.showMessageDialog(this, "Invalid email id!", "Warning!!!", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                con = db.getConnection();
-                System.out.println("Connected to database.");
-                con.close();
-            } catch(SQLException se)
+            if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t5.getText()).equals("")))
             {
-                System.out.println(se);
-                JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            else if(!matchFound)
+            {
+                JOptionPane.showMessageDialog(this,"Invalid email id!","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    ps=con.prepareStatement("insert into user_manager (username,password,role,email) values(?,?,?,?)");
+                    ps.setString(1,t2.getText());
+                    ps.setString(2,t3.getText());
+                    ps.setString(3,c1.getSelectedItem().toString());
+                    ps.setString(4,t5.getText());
+                    ps.executeUpdate();
+
+                    int reply=JOptionPane.showConfirmDialog(null,"User added successfully.Do you want add more Users?","Added User",JOptionPane.YES_NO_OPTION);
+
+                    if (reply == JOptionPane.YES_OPTION)
+                    {
+                        jf.setVisible(false);
+                        new AddUser();
+                    }
+                    else if (reply == JOptionPane.NO_OPTION)
+                    {
+                        jf.setVisible(false);
+                    }con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception ae)
+                {
+                    System.out.println(ae);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
             }
         }
     }
