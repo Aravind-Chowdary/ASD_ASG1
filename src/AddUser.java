@@ -10,9 +10,12 @@ public class AddUser extends JFrame implements ActionListener
     JLabel l1,l2,l3,l4,l5;
     JTextField t2,t3,t5;
     JComboBox c1;
+    JButton b0,b1,b2;
+    DB db =null;
     AddUser(){
         jf = new JFrame();
         jf.setLayout(null);
+        db = new DB();
         l1=new JLabel("Add New User");
         l1.setBounds(250,50,300,40);
         l1.setForeground(Color.blue);
@@ -54,6 +57,18 @@ public class AddUser extends JFrame implements ActionListener
         t5.setBounds(320,280,250,25);
         t5.setToolTipText("Enter email id");
         jf.add(t5);
+
+        b0 = new JButton("Save",db.getImage("images/save.png"));
+        b0.setBounds(150,350,110,35);b0.setToolTipText("click to save User details");
+        jf.add(b0);b0.addActionListener(this);
+
+        b1 = new JButton("Clear",db.getImage("images/clear.png"));
+        b1.setBounds(300,350,110,35);b1.setToolTipText("click to clear all textfilds");
+        jf.add(b1); b1.addActionListener(this);
+
+        b2= new JButton("All",db.getImage("images/all.png"));
+        b2.setBounds(450,350,110,35);b2.setToolTipText("click to view all User details");
+        jf.add(b2); b2.addActionListener(this);
 
 
         jf.setTitle("Add New User");
