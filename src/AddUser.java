@@ -7,8 +7,8 @@ public class AddUser extends JFrame implements ActionListener
 {
 
     JFrame jf;
-    JLabel l1,l2,l3,l4;
-    JTextField t2,t3;
+    JLabel l1,l2,l3,l4,l5;
+    JTextField t2,t3,t5;
     JComboBox c1;
     AddUser(){
         jf = new JFrame();
@@ -45,6 +45,16 @@ public class AddUser extends JFrame implements ActionListener
         c1.addItem("manager");
         c1.addItem("clerk");
         jf.add(c1);
+
+        l5 = new JLabel(" Email id*");
+        l5.setBounds(150,280,170,25);
+        jf.add(l5);
+
+        t5=new JTextField(20);
+        t5.setBounds(320,280,250,25);
+        t5.setToolTipText("Enter email id");
+        jf.add(t5);
+
 
         jf.setTitle("Add New User");
         jf.setLocation(20,20);
