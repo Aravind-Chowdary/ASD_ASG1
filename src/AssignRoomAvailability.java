@@ -10,7 +10,6 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         jf = new JFrame();
         jf.setLayout(null);
         jf.setTitle("Assign Day and Room Availability");
-        //jf.setSize(900,700);
         jf.setLocation(20,20);
         jf.setResizable(false);
         jf.getContentPane().setBackground(Color.cyan);
