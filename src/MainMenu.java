@@ -121,7 +121,7 @@ public class MainMenu extends JFrame implements ActionListener
         }
         else if(e.getSource()==m10_1)
         {
-            new AssignRoomAvailbility();
+            new AssignRoomAvailability();
         }
         else if(e.getSource()==m10_2)
         {
