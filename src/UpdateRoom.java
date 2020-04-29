@@ -231,20 +231,22 @@ public class UpdateRoom extends JFrame implements ActionListener
                     model.removeRow(i);
                 }
             }
-
+            int r = 0;
             try {
                 con = db.getConnection();
                 System.out.println("Connected to database.");
+                stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                rs = stmt.executeQuery("SELECT * from room_manager");
+                while (rs.next()) {
+                    model.insertRow(r++, new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)});
+                }
                 con.close();
-            } catch(SQLException se)
-            {
+            } catch (SQLException se) {
                 System.out.println(se);
-                JOptionPane.showMessageDialog(null,"SQL Error"+se);
-            }
-            catch(Exception e)
-            {
+                JOptionPane.showMessageDialog(null, "SQL Error" + se);
+            } catch (Exception e) {
                 System.out.println(e);
-                JOptionPane.showMessageDialog(null,"Error:"+e);
+                JOptionPane.showMessageDialog(null, "Error:" + e);
             }
         }
         else if(ae.getSource()==b4) {//update
