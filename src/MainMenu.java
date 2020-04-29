@@ -6,8 +6,8 @@ public class MainMenu extends JFrame implements ActionListener
 {
     JFrame jf;
     JMenuBar mbar;
-    JMenu m6,m7,m8;
-    JMenuItem m6_1,m6_2,m7_1,m7_2,m8_1,m8_2;
+    JMenu m6,m7,m8,m9;
+    JMenuItem m6_1,m6_2,m7_1,m7_2,m8_1,m8_2,m9_1,m9_2;
     GridBagLayout gbl;
     DB db=null;
     public MainMenu()
@@ -41,6 +41,13 @@ public class MainMenu extends JFrame implements ActionListener
 
         m7_1.addActionListener(this);
         m7_2.addActionListener(this);
+
+        m9=new JMenu("Add Clerk");
+        mbar.add(m9);
+        m9_1 = new JMenuItem("Add Clerks",db.getImage("images/addnew.png"));
+        m9.add(m9_1);
+        m9_2 = new JMenuItem("Manage Clerks",db.getImage("images/update.png"));
+        m9.add(m9_2);
 
         m8=new JMenu("Exit");
         mbar.add(m8);
