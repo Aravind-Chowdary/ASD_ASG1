@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 
 class LoginClerk extends JFrame implements ActionListener
@@ -12,6 +13,7 @@ class LoginClerk extends JFrame implements ActionListener
     Font f;
     JButton b1,b2,b3,b4;
     DB db = null;
+    Connection con;
     LoginClerk(){
         db = new DB();
         jf=new JFrame();
@@ -69,6 +71,32 @@ class LoginClerk extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent ae)
     {
+        if(ae.getSource()==b1)
+        {
+            try
+            {
+                String s=t1.getText();
+                String s1=new String(p1.getPassword());
+                con=db.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from user_manager  where role='clerk' and username='"+s+"' and password='"+s1+"'");
+
+                if(rs.next())
+                {
+                    JOptionPane.showMessageDialog(null," Welcome !!! ","WELCOME",JOptionPane.INFORMATION_MESSAGE);
+                    jf.setVisible(false);
+                    new ClerkMenu();
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null," Sorry !!! You are not valid user ...!!!","WARNING",JOptionPane.ERROR_MESSAGE);
+                t1.setText("");
+                p1.setText("");
+            }
+        }
 
     }
 
