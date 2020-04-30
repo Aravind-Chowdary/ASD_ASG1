@@ -5,15 +5,21 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Properties;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.SqlDateModel;
 public class UpdateRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2;
+    JLabel l1,l2,l3;
     JTextField t1;
     JComboBox c1;
     DB db= null;
     Connection con;
+    JDatePickerImpl datePicker;
+    SqlDateModel datemodel;
     UpdateRoomAvailability(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -49,6 +55,24 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         {
             e.printStackTrace();
         }
+
+
+        l3= new JLabel("Select Date *");
+        l3.setBounds(150,160,170,25);
+        jf.add(l3);
+
+        datemodel = new SqlDateModel();
+        Properties p = new Properties();
+        p.put("text.today", "today");
+        p.put("text.month", "month");
+        p.put("text.year", "year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(datemodel, p);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datemodel.setSelected(true);
+        datePicker.setBounds(320,160,200,25);datePicker.setToolTipText("Select Date");
+        jf.add(datePicker);
+
+
         jf.setTitle("Manage Bookings ");
         jf.setLocation(20,20);
         jf.setResizable(false);
