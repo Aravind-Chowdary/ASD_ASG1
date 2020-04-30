@@ -23,6 +23,8 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
+    PreparedStatement ps;
+    ResultSet rs;
     UpdateRoomAvailability(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -141,8 +143,23 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(this, "Please enter  id or  !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
             } else {//fetch
                 try {
+                    int foundrec = 0;
                     con = db.getConnection();
                     System.out.println("Connected to database.");
+                    ps = con.prepareStatement("select * from room_availbility where aid='" + t1.getText() + "'");
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
+                        t1.setText(rs.getString(1));
+                        c1.setSelectedItem(rs.getString(2));
+                        datemodel.setValue(rs.getDate(3));
+                        c2.setSelectedItem(rs.getString(4));
+                        t4.setText(rs.getString(5));
+
+                        foundrec = 1;
+                    }
+                    if (foundrec == 0) {
+                        JOptionPane.showMessageDialog(null, "Record is not available", "Dialog", JOptionPane.WARNING_MESSAGE);
+                    }
                     con.close();
                 } catch (SQLException se) {
                     System.out.println(se);
