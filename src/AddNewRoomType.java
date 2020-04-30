@@ -3,7 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-import java.sql.SQLException;
+
 
 public class AddNewRoomType extends JFrame implements ActionListener
 {
@@ -29,7 +29,8 @@ public class AddNewRoomType extends JFrame implements ActionListener
 
         l3=new JLabel("Add New Room Type ");
         l3.setFont(new Font("Times New Roman",Font.BOLD,25));
-        l3.setBounds(250,50,300,40);l3.setForeground(Color.blue);
+        l3.setBounds(250,50,300,40);
+        l3.setForeground(Color.blue);
         jf.add(l3);
 
 
@@ -75,24 +76,41 @@ public class AddNewRoomType extends JFrame implements ActionListener
         jf.setVisible(true);
     }
 
-
-    public void actionPerformed(ActionEvent ae) {
+    public void actionPerformed(ActionEvent ae)
+    {
         if(ae.getSource()==b0)
         {
             if(((t2.getText()).equals("")))
             {
-                JOptionPane.showMessageDialog(this,"* Please enter the Room type!","Warning!!!",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.WARNING_MESSAGE);
             }
-            else{
-                try {
-                    con = db.getConnection();
+
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
                     System.out.println("Connected to database.");
-                    ps = con.prepareStatement("insert into typemaster (roomtype)values(?)");
-                    ps.setString(1, t2.getText());
+                    ps=con.prepareStatement("insert into typemaster (roomtype)values(?)");
+                    ps.setString(1,t2.getText());
                     ps.executeUpdate();
+
+                    int reply=JOptionPane.showConfirmDialog(null,"Room Type added successfully.Do you want add more Types?","Added Type",JOptionPane.YES_NO_OPTION);
+
+                    if (reply == JOptionPane.YES_OPTION)
+                    {
+                        jf.setVisible(false);
+                        new AddNewRoomType();
+                    }
+                    else if (reply == JOptionPane.NO_OPTION)
+                    {
+                        jf.setVisible(false);
+                    }con.close();
                 }
-                catch (SQLException e) {
-                    e.printStackTrace();
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
                 }
                 catch(Exception e)
                 {
@@ -106,7 +124,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
             t2.setText("");
         }
         else if(ae.getSource()==b2)
-        {
+        {//list
             if (model.getRowCount() > 0) {
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
                     model.removeRow(i);
@@ -142,3 +160,4 @@ public class AddNewRoomType extends JFrame implements ActionListener
         new AddNewRoomType();
     }
 }
+
