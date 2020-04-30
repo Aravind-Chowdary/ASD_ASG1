@@ -198,6 +198,30 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
                 }
             }
         }
+        else if(ae.getSource()==b2)
+        {
+            t1.setText("");
+            c1.setSelectedItem("Select Room");
+            c3.setSelectedItem("Select Day Type");
+            t4.setText("");
+
+        }
+        else if(ae.getSource()==b3) {//list
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }
+            int r = 0;
+            try {
+                con = db.getConnection();
+                System.out.println("Connected to database.");
+                con.close();
+            } catch (SQLException se) {
+                System.out.println(se);
+                JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+            }
+        }
     }
     public static void main(String args[]){
 
