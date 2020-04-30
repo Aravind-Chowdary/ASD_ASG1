@@ -8,6 +8,7 @@ public class UpdateUser extends JFrame implements ActionListener
     JFrame jf;
     JLabel l1,l2,l3,l4,l5;
     JTextField t1,t2,t3,t5;
+    JButton b0,b1,b2,b3,b4;
     JComboBox c1;
     UpdateUser(){
         jf = new JFrame();
@@ -60,6 +61,36 @@ public class UpdateUser extends JFrame implements ActionListener
         t5.setBounds(320,280,250,25);
         t5.setToolTipText("Enter email id");
         jf.add(t5);
+
+        b0 = new JButton("Open");
+        b0.setBounds(150,350,110,35);
+        b0.setToolTipText("click to open User details");
+        jf.add(b0);
+        b0.addActionListener(this);
+
+        b1 = new JButton("Update");
+        b1.setBounds(300,350,110,35);
+        b1.setToolTipText("click to update User details");
+        jf.add(b1);
+        b1.addActionListener(this);
+
+        b2 = new JButton("Clear");
+        b2.setBounds(450,350,110,35);
+        b2.setToolTipText("click to clear all textfilds");
+        jf.add(b2);
+        b2.addActionListener(this);
+
+        b3 = new JButton("All");
+        b3.setBounds(600,350,110,35);
+        b3.setToolTipText("click to view all User details");
+        jf.add(b3);
+        b3.addActionListener(this);
+
+        b4 = new JButton("Delete");
+        b4.setBounds(750,350,110,35);
+        b4.setToolTipText("click to Delete User details");
+        jf.add(b4);
+        b4.addActionListener(this);
 
         jf.setTitle("Update Users");
         jf.setLocation(20,20);
