@@ -43,6 +43,9 @@ public class ClerkMenu extends JFrame implements ActionListener
         m10_2 = new JMenuItem("View Available Rooms");
         m10.add(m10_2);
 
+        m10.addActionListener(this);
+        m10_1.addActionListener(this);
+        m10_2.addActionListener(this);
         jf.setTitle("Clerk Menu");
         jf.setLocation(20,20);
         jf.setResizable(false);
@@ -62,6 +65,14 @@ public class ClerkMenu extends JFrame implements ActionListener
         else if(ae.getSource()==m6_2)
         {
             new UpdateRoomBooking();
+        }
+        else if(ae.getSource()==m10_1)
+        {
+            new SearchRoom();
+        }
+        else if(ae.getSource()==m10_2)
+        {
+            new AssignList();
         }
     }
 
