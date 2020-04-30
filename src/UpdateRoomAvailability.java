@@ -13,8 +13,8 @@ import org.jdatepicker.impl.SqlDateModel;
 public class UpdateRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3,l4;
-    JTextField t1;
+    JLabel l1,l2,l3,l4,l5;
+    JTextField t1,t4;
     JComboBox c1,c2;
     DB db= null;
     Connection con;
@@ -83,6 +83,15 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         c2.addItem("Weekend");
         c2.addItem("TermTime");
         jf.add(c2);
+
+        l5 = new JLabel("Time *");
+        l5.setBounds(150,240,210,25);
+        jf.add(l5);
+
+        t4=new JTextField(20);
+        t4.setBounds(320,240,200,25);
+        t4.setToolTipText("Time");
+        jf.add(t4);
 
         jf.setTitle("Manage Bookings ");
         jf.setLocation(20,20);
