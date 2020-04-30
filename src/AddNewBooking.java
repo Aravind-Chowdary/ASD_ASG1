@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 public class AddNewBooking extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3;
-    JTextField t2,t3;
+    JLabel l1,l2,l3,l4;
+    JTextField t2,t3,t4;
     AddNewBooking(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -35,6 +35,14 @@ public class AddNewBooking extends JFrame implements ActionListener
         t3.setBounds(320,200,250,25);
         t3.setToolTipText("Enter Address");
         jf.add(t3);
+
+        l4 = new JLabel("Phone Number*");
+        l4.setBounds(150,240,170,25);
+        jf.add(l4);
+
+        t4=new JTextField(20);
+        t4.setBounds(320,240,250,25);t4.setToolTipText("Enter Phone Number");
+        jf.add(t4);
 
         jf.setTitle("ADD NEW BOOKING");
         jf.setLocation(20,20);
