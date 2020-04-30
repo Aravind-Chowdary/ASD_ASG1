@@ -1,3 +1,7 @@
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.SqlDateModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class AssignRoomAvailability extends JFrame implements ActionListener
 {
@@ -13,6 +18,8 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
     JComboBox c1;
     DB db =null;
     Connection con;
+    JDatePickerImpl datePicker;
+    SqlDateModel datemodel;
     AssignRoomAvailability(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -25,6 +32,22 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         c1.setBounds(320,120,200,25);c1.setToolTipText("Select Room");
         jf.add(c1);
         c1.addItem("Select Room");
+
+        l2= new JLabel("Select Date *");
+        //l1.setFont(f);
+        l2.setBounds(150,160,170,25);
+        jf.add(l2);
+
+        datemodel = new SqlDateModel();
+        Properties p = new Properties();
+        p.put("text.today", "today");
+        p.put("text.month", "month");
+        p.put("text.year", "year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(datemodel, p);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datemodel.setSelected(true);
+        datePicker.setBounds(320,160,200,25);datePicker.setToolTipText("Select Date");
+        jf.add(datePicker);
 
         try {
             con=db.getConnection();
