@@ -57,10 +57,13 @@ public class MainMenu extends JFrame implements ActionListener
         mbar.add(m10);
         m10_1 = new JMenuItem("Assign Availability",db.getImage("images/addnew.png"));
         m10.add(m10_1);
+        m10_1.addActionListener(this);
         m10_2 = new JMenuItem("View Room Details",db.getImage("images/all.png"));
         m10.add(m10_2);
+        m10_2.addActionListener(this);
         m10_3 = new JMenuItem("Update Availability",db.getImage("images/update.png"));
         m10.add(m10_3);
+        m10_3.addActionListener(this);
 
         m8=new JMenu("Exit");
         mbar.add(m8);
