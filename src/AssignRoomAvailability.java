@@ -14,7 +14,8 @@ import java.util.Properties;
 public class AssignRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3;
+    JLabel l1,l2,l3,l4;
+    JTextField t4;
     JComboBox c1,c3;
     DB db =null;
     Connection con;
@@ -74,6 +75,16 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         c3.addItem("Weekend");
         c3.addItem("TermTime");
         jf.add(c3);
+
+        l4 = new JLabel("Time *");
+        //l3.setFont(f);
+        l4.setBounds(150,240,210,25);
+        jf.add(l4);
+
+        t4=new JTextField(20);
+        t4.setBounds(320,240,200,25);
+        t4.setToolTipText("Time");
+        jf.add(t4);
 
         jf.setTitle("Assign Day and Room Availability");
         jf.setLocation(20,20);
