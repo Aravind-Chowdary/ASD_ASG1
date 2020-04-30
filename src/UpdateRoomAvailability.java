@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +22,9 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
     Connection con;
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     UpdateRoomAvailability(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -113,6 +117,16 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         b4 = new JButton("Delete");
         b4.setBounds(750,300,110,35);b4.setToolTipText("click to delete  details");
         jf.add(b4);
+
+        scrlPane.setBounds(80,380,900,600);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("A_ID");
+        model.addColumn("Room");
+        model.addColumn("Date");
+        model.addColumn("Type");
+        model.addColumn("Time");
 
         jf.setTitle("Manage Bookings ");
         jf.setLocation(20,20);
