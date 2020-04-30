@@ -13,9 +13,9 @@ import org.jdatepicker.impl.SqlDateModel;
 public class UpdateRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3;
+    JLabel l1,l2,l3,l4;
     JTextField t1;
-    JComboBox c1;
+    JComboBox c1,c2;
     DB db= null;
     Connection con;
     JDatePickerImpl datePicker;
@@ -56,7 +56,6 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
             e.printStackTrace();
         }
 
-
         l3= new JLabel("Select Date *");
         l3.setBounds(150,160,170,25);
         jf.add(l3);
@@ -72,6 +71,18 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         datePicker.setBounds(320,160,200,25);datePicker.setToolTipText("Select Date");
         jf.add(datePicker);
 
+        l4= new JLabel("Enter Day Type*");
+        l4.setBounds(150,200,210,25);
+        jf.add(l4);
+
+        c2= new JComboBox();
+        c2.setBounds(320,200,200,25);
+        c2.setToolTipText("Choose Type");
+        c2.addItem("Select Day Type");
+        c2.addItem("Holiday");
+        c2.addItem("Weekend");
+        c2.addItem("TermTime");
+        jf.add(c2);
 
         jf.setTitle("Manage Bookings ");
         jf.setLocation(20,20);
