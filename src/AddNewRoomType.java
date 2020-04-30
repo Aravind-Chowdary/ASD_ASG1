@@ -33,7 +33,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
         t2.setBounds(320,160,200,25);t2.setToolTipText("Enter Room Type Name");
         jf.add(t2);
 
-        b0 = new JButton("Save",db.getImage("images/save.png"));
+        b0 = new JButton("Save");
         b0.setBounds(150,230,110,35);
         b0.setToolTipText("Click to Save Room Type details");
         jf.add(b0);
