@@ -1,13 +1,20 @@
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.SqlDateModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Properties;
 
 public class AddNewBooking extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3,l4,l5,l7;
+    JLabel l1,l2,l3,l4,l5,l7,l8;
     JTextField t2,t3,t4,t5,t7;
+    JDatePickerImpl datePicker;
+    SqlDateModel datemodel;
     AddNewBooking(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -62,6 +69,25 @@ public class AddNewBooking extends JFrame implements ActionListener
         t7.setBounds(320,320,250,25);
         t7.setToolTipText("Enter Purpose");
         jf.add(t7);
+
+        l8 = new JLabel("Select Date*");
+        l8.setBounds(150,360,170,25);
+        jf.add(l8);
+
+        datemodel = new SqlDateModel();
+        Properties p = new Properties();
+        p.put("text.today", "today");
+        p.put("text.month", "month");
+        p.put("text.year", "year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(datemodel, p);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datemodel.setSelected(true);
+        //t5=new JTextField(20)
+        datePicker.setBounds(320,360,250,25);
+        datePicker.setToolTipText("Date");
+        jf.add(datePicker);
+
+
 
         jf.setTitle("ADD NEW BOOKING");
         jf.setLocation(20,20);
