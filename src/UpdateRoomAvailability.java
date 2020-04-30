@@ -14,6 +14,7 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
     JLabel l1,l2,l3,l4,l5;
+    JButton b0,b1,b2,b3,b4;
     JTextField t1,t4;
     JComboBox c1,c2;
     DB db= null;
@@ -92,6 +93,26 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         t4.setBounds(320,240,200,25);
         t4.setToolTipText("Time");
         jf.add(t4);
+
+        b0 = new JButton("Open");
+        b0.setBounds(150,300,110,35);b0.setToolTipText("click to open  details");
+        jf.add(b0);
+
+        b1 = new JButton("Update");
+        b1.setBounds(300,300,110,35);b1.setToolTipText("click to update  details");
+        jf.add(b1);
+
+        b2 = new JButton("Clear");
+        b2.setBounds(450,300,110,35);b2.setToolTipText("click to clear all textfilds");
+        jf.add(b2);
+
+        b3 = new JButton("All");
+        b3.setBounds(600,300,110,35);b3.setToolTipText("click to view all  details");
+        jf.add(b3);
+
+        b4 = new JButton("Delete");
+        b4.setBounds(750,300,110,35);b4.setToolTipText("click to delete  details");
+        jf.add(b4);
 
         jf.setTitle("Manage Bookings ");
         jf.setLocation(20,20);
