@@ -3,6 +3,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,12 +15,16 @@ public class UpdateRoomBooking extends JFrame implements ActionListener
 {
     JFrame jf;
     JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9;
-    JTextField t1,t2,t3,t4,t5,t7,t8,t9;
+    JTextField t1,t2,t3,t4,t5,t7;
+    JButton b0,b1,b2,b3,b4;
     JComboBox c1;
     DB db = null;
     Connection con;
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     UpdateRoomBooking() {
         jf = new JFrame();
         jf.setLayout(null);
@@ -117,6 +122,39 @@ public class UpdateRoomBooking extends JFrame implements ActionListener
 
         jf.add(c1);
 
+        b0 = new JButton("Open");
+        b0.setBounds(150,450,110,35);b0.setToolTipText("click to open MR details");
+        jf.add(b0); b0.addActionListener(this);
+
+        b1 = new JButton("Update");
+        b1.setBounds(300,450,110,35);b1.setToolTipText("click to update MR details");
+        jf.add(b1);b1.addActionListener(this);
+
+        b2 = new JButton("Clear");
+        b2.setBounds(450,450,110,35);b2.setToolTipText("click to clear all textfilds");
+        jf.add(b2);b2.addActionListener(this);
+
+        b3 = new JButton("All");
+        b3.setBounds(600,450,110,35);b3.setToolTipText("click to view all MR details");
+        jf.add(b3); b3.addActionListener(this);
+
+        b4 = new JButton("Delete");
+        b4.setBounds(750,450,110,35);b4.setToolTipText("click to Delete MR details");
+        jf.add(b4); b4.addActionListener(this);
+
+        scrlPane.setBounds(80,520,900,600);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("BID");
+        model.addColumn("FULLNAME");
+        model.addColumn("ADDRESS");
+        model.addColumn("MOBILE");
+        model.addColumn("EMAIL");
+        model.addColumn("DESCRIPTION");
+        model.addColumn("ROOM");
+        model.addColumn("BOOKEDDATE");
+        model.addColumn("TDATE");
 
         jf.setTitle("Update Booking");
         jf.setLocation(20,20);
