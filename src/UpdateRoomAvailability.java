@@ -179,6 +179,18 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
+
+                    ps = con.prepareStatement("update room_availbility set room=?,adate=?,dtype=?,atime=? where aid=?");
+                    ps.setString(1, c1.getSelectedItem().toString());
+                    ps.setDate(2, (Date) datePicker.getModel().getValue());
+                    ps.setString(3, c2.getSelectedItem().toString());
+                    ps.setString(4, t4.getText());
+                    ps.setString(5, t1.getText());
+                    ps.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "Record is updated");
+
+
                     con.close();
                 } catch (SQLException se) {
                     System.out.println(se);
