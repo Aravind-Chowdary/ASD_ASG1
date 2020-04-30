@@ -1,8 +1,14 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CRSHome extends JFrame {
     static CRSHome frame;
@@ -13,10 +19,19 @@ public class CRSHome extends JFrame {
             public void run() {
                 try {
                     frame= new CRSHome();
-                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                    frame.setBounds(0,0,screenSize.width, screenSize.height);
+                    try{
+                        ImageIcon  image = new ImageIcon(getClass().getClassLoader().getResource("images/logo.png"));
+                        frame.setIconImage(image.getImage());
+                    }
+                    catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    //frame.setBounds(0,0,screenSize.width, screenSize.height);
 
-                    frame.getContentPane().setLayout(new GridBagLayout());
+                    // frame.getContentPane().setLayout(new GridBagLayout());
+
                     frame.setResizable(false);
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -54,36 +69,36 @@ public class CRSHome extends JFrame {
         JButton reports = new JButton("Clerk Login",db.getImage("images/pass.png"));
         reports.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                Login.main(new String[]{});
+                LoginClerk.main(new String[]{});
             }
         });
         reports.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
+                gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addGap(64)
                                                 .addComponent(lblLibraryManagement))
                                         .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addGap(140)
-                                                .addGroup(gl_contentPane.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(btnAdminLogin, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                                        .addComponent(reports, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))))
+                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+                                                        .addComponent(btnAdminLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                                        .addComponent(reports, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))))
 
                                 .addContainerGap(95, Short.MAX_VALUE))
         );
         gl_contentPane.setVerticalGroup(
-                gl_contentPane.createParallelGroup(GroupLayout.Alignment.LEADING)
+                gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(lblLibraryManagement)
                                 .addGap(32)
                                 .addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addComponent(reports, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(70, Short.MAX_VALUE))
         );
@@ -91,6 +106,4 @@ public class CRSHome extends JFrame {
         contentPane.setLayout(gl_contentPane);
 
     }
-
-
 }
