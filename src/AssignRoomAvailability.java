@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class AssignRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1;
+    JLabel l1,l2;
     JComboBox c1;
     DB db =null;
     Connection con;
@@ -41,6 +41,11 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         {
             e.printStackTrace();
         }
+
+        l2= new JLabel("Select Date *");
+        //l1.setFont(f);
+        l2.setBounds(150,160,170,25);
+        jf.add(l2);
 
         jf.setTitle("Assign Day and Room Availability");
         jf.setLocation(20,20);
