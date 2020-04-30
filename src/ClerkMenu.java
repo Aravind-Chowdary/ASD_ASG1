@@ -8,6 +8,8 @@ public class ClerkMenu extends JFrame implements ActionListener
     JLabel l1;
     GridBagLayout gbl;
     JMenuBar mbar;
+    JMenu m6;
+    JMenuItem m6_1,m6_2;
     public ClerkMenu()
     {
         jf = new JFrame();
@@ -23,6 +25,17 @@ public class ClerkMenu extends JFrame implements ActionListener
         mbar = new JMenuBar();
         jf.setJMenuBar(mbar);
 
+        m6=new JMenu("Book Room");
+        mbar.add(m6);
+        m6_1 = new JMenuItem("Add New Booking");
+        m6.add(m6_1);
+        m6_2 = new JMenuItem("View / Manage Room Booking");
+        m6.add(m6_2);
+
+        m6.addActionListener(this);
+        m6_1.addActionListener(this);
+        m6_2.addActionListener(this);
+
         jf.setTitle("Clerk Menu");
         jf.setLocation(20,20);
         jf.setResizable(false);
@@ -35,6 +48,14 @@ public class ClerkMenu extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent ae)
     {
+        if(ae.getSource()==m6_1)
+        {
+            new AddNewBooking();
+        }
+        else if(ae.getSource()==m6_2)
+        {
+            new UpdateRoomBooking();
+        }
     }
 
     public static void main(String args[])
