@@ -202,7 +202,7 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         {
             t1.setText("");
             c1.setSelectedItem("Select Room");
-            c3.setSelectedItem("Select Day Type");
+            c2.setSelectedItem("Select Day Type");
             t4.setText("");
 
         }
