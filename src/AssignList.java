@@ -1,14 +1,11 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class AssignList extends JFrame
 {
-    JFrame jf;
+    JFrame jf = new JFrame();
     DB db = null;
     JLabel ln;
     Connection con;
@@ -18,11 +15,10 @@ public class AssignList extends JFrame
     Statement stmt;
     ResultSet rs;
 
-    public AssignList(){
+    public AssignList()
+    {
         db = new DB();
-        jf = new JFrame();
         jf.setLayout(null);
-
         ln = new JLabel("List Of Available Room Details");
         ln.setFont(new Font("Times New Roman",Font.BOLD,25));
         ln.setForeground(Color.blue);
@@ -38,6 +34,8 @@ public class AssignList extends JFrame
         model.addColumn("Date");
         model.addColumn("Type");
         model.addColumn("Time");
+        model.addColumn("Status");
+
         int r = 0;
         try
         {
@@ -47,7 +45,7 @@ public class AssignList extends JFrame
             rs = stmt.executeQuery("select * from room_availbility" );
             while(rs.next())
             {
-                model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5) });
+                model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6) });
             }
             con.close();
         }
