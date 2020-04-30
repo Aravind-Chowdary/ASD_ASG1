@@ -10,8 +10,10 @@ class LoginClerk extends JFrame implements ActionListener
     JTextField t1;
     JPasswordField p1;
     Font f;
-
+    JButton b1,b2,b3,b4;
+    DB db = null;
     LoginClerk(){
+        db = new DB();
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
@@ -40,6 +42,22 @@ class LoginClerk extends JFrame implements ActionListener
         p1.setBounds(350,300,200,25);
         p1.setToolTipText("Enter Password");
         jf.add(p1);
+
+        b1 = new JButton("Login",db.getImage("images/Login.png"));
+        b1.setBounds(200,400,100,35);
+        jf.add(b1);b1.addActionListener(this);
+
+        b2 = new JButton("Clear",db.getImage("images/clear.png"));
+        b2.setBounds(320,400,100,35);
+        jf.add(b2);b2.addActionListener(this);
+
+        b3 = new JButton("Exit",db.getImage("images/exit.png"));
+        b3.setBounds(440,400,100,35);
+        jf.add(b3);b3.addActionListener(this);
+
+        b4 = new JButton("Back",db.getImage("images/exit.png"));
+        b4.setBounds(560,400,100,35);
+        jf.add(b4);b4.addActionListener(this);
 
         jf.setTitle("Login");
         jf.setLocation(20,20);
