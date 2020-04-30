@@ -3,9 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -137,8 +135,21 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         jf.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e) {
-
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b0) {
+            if (((t1.getText()).equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter  id or  !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
+            } else {//fetch
+                try {
+                    con = db.getConnection();
+                    System.out.println("Connected to database.");
+                    con.close();
+                } catch (SQLException se) {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+                }
+            }
+        }
     }
     public static void main(String args[]){
 
