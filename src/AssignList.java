@@ -23,7 +23,7 @@ public class AssignList extends JFrame
         jf = new JFrame();
         jf.setLayout(null);
 
-        ln = new JLabel("List Of Availble Room Details");
+        ln = new JLabel("List Of Available Room Details");
         ln.setFont(new Font("Times New Roman",Font.BOLD,25));
         ln.setForeground(Color.blue);
         ln.setBounds(300,30,350,25);
