@@ -8,11 +8,12 @@ import java.sql.SQLException;
 public class AddNewRoomType extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l2;
+    JLabel l2,l3;
     JTextField t2;
     JButton b0,b1,b2;
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
+    Font f;
     JScrollPane scrlPane = new JScrollPane(tabGrid);
     Connection con;
     DB db = null;
@@ -21,8 +22,16 @@ public class AddNewRoomType extends JFrame implements ActionListener
     ResultSet rs;
     AddNewRoomType()
     {
+        db = new DB();
         jf=new JFrame();
+        f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
+
+        l3=new JLabel("Add New Room Type ");
+        l3.setFont(new Font("Times New Roman",Font.BOLD,25));
+        l3.setBounds(250,50,300,40);l3.setForeground(Color.blue);
+        jf.add(l3);
+
 
         l2 = new JLabel("Enter Room Type Name*");
         //l2.setFont(f);
@@ -42,11 +51,13 @@ public class AddNewRoomType extends JFrame implements ActionListener
         b1 = new JButton("Clear");
         b1.setBounds(300,230,110,35);
         b1.setToolTipText("Click to Clear all TextFields");
+        b1.addActionListener(this);
         jf.add(b1);
 
         b2= new JButton("All");
         b2.setBounds(450,230,110,35);
         b2.setToolTipText("Click to View all Room Type Details");
+        b2.addActionListener(this);
         jf.add(b2);
 
         scrlPane.setBounds(80,380,600,300);
