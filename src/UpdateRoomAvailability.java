@@ -25,6 +25,7 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
     JScrollPane scrlPane = new JScrollPane(tabGrid);
     PreparedStatement ps;
     ResultSet rs;
+    Statement stmt;
     UpdateRoomAvailability(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -206,20 +207,38 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
             t4.setText("");
 
         }
-        else if(ae.getSource()==b3) {//list
+        else if(ae.getSource()==b2)
+        {
+            t1.setText("");
+            c1.setSelectedItem("Select Room");
+            c2.setSelectedItem("Select Day Type");
+            t4.setText("");
+
+        }
+        else if(ae.getSource()==b3)
+        {//list
             if (model.getRowCount() > 0) {
                 for (int i = model.getRowCount() - 1; i > -1; i--) {
                     model.removeRow(i);
                 }
             }
             int r = 0;
-            try {
-                con = db.getConnection();
+            try
+            {
+                con=db.getConnection();
                 System.out.println("Connected to database.");
+                stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                rs = stmt.executeQuery("select * from room_availbility " );
+                while(rs.next())
+                {
+                    model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5) });
+                }
                 con.close();
-            } catch (SQLException se) {
+            }
+            catch(SQLException se)
+            {
                 System.out.println(se);
-                JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+                JOptionPane.showMessageDialog(null,"SQL Error:"+se);
             }
         }
     }
