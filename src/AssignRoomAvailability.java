@@ -14,8 +14,8 @@ import java.util.Properties;
 public class AssignRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2;
-    JComboBox c1;
+    JLabel l1,l2,l3;
+    JComboBox c1,c3;
     DB db =null;
     Connection con;
     JDatePickerImpl datePicker;
@@ -33,22 +33,6 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         jf.add(c1);
         c1.addItem("Select Room");
 
-        l2= new JLabel("Select Date *");
-        //l1.setFont(f);
-        l2.setBounds(150,160,170,25);
-        jf.add(l2);
-
-        datemodel = new SqlDateModel();
-        Properties p = new Properties();
-        p.put("text.today", "today");
-        p.put("text.month", "month");
-        p.put("text.year", "year");
-        JDatePanelImpl datePanel = new JDatePanelImpl(datemodel, p);
-        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        datemodel.setSelected(true);
-        datePicker.setBounds(320,160,200,25);datePicker.setToolTipText("Select Date");
-        jf.add(datePicker);
-
         try {
             con=db.getConnection();
             Statement st = con.createStatement();
@@ -64,11 +48,32 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         {
             e.printStackTrace();
         }
-
         l2= new JLabel("Select Date *");
-        //l1.setFont(f);
         l2.setBounds(150,160,170,25);
         jf.add(l2);
+
+        datemodel = new SqlDateModel();
+        Properties p = new Properties();
+        p.put("text.today", "today");
+        p.put("text.month", "month");
+        p.put("text.year", "year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(datemodel, p);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datemodel.setSelected(true);
+        datePicker.setBounds(320,160,200,25);datePicker.setToolTipText("Select Date");
+        jf.add(datePicker);
+
+        l3= new JLabel("Enter Day Type*");
+        l3.setBounds(150,200,210,25);
+        jf.add(l3);
+
+        c3= new JComboBox();
+        c3.setBounds(320,200,200,25);c3.setToolTipText("Choose Type");
+        c3.addItem("Select Day Type");
+        c3.addItem("Holiday");
+        c3.addItem("Weekend");
+        c3.addItem("TermTime");
+        jf.add(c3);
 
         jf.setTitle("Assign Day and Room Availability");
         jf.setLocation(20,20);
