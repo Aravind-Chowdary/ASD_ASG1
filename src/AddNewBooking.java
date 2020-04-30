@@ -6,18 +6,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import java.util.Properties;
 
 public class AddNewBooking extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3,l4,l5,l7,l8;
+    JLabel l1,l2,l3,l4,l5,l7,l8,l9;
     JTextField t2,t3,t4,t5,t7;
+    JComboBox c1;
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
+    DB db = null;
+    Connection con;
     AddNewBooking(){
         jf = new JFrame();
         jf.setLayout(null);
+        db = new DB();
 
         l1=new JLabel("Add New Booking");
         l1.setFont(new Font("Times New Roman",Font.BOLD,25));
@@ -82,12 +87,37 @@ public class AddNewBooking extends JFrame implements ActionListener
         JDatePanelImpl datePanel = new JDatePanelImpl(datemodel, p);
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         datemodel.setSelected(true);
-        //t5=new JTextField(20)
         datePicker.setBounds(320,360,250,25);
         datePicker.setToolTipText("Date");
         jf.add(datePicker);
 
 
+        l9 = new JLabel("Room*");
+        l9.setBounds(150,400,170,25);
+        jf.add(l9);
+
+        c1=new JComboBox();
+        c1.setBounds(320,400,250,25);
+        c1.setToolTipText("Select Room");
+        c1.addItem("Select Room");
+        try {
+            con=db.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("Select rtitle from room_manager where availability=1");
+            while (rs.next()) {
+                String mrd = rs.getString("rtitle");
+                c1.addItem(mrd);
+            }
+            rs.close();
+
+            con.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        jf.add(c1);
 
         jf.setTitle("ADD NEW BOOKING");
         jf.setLocation(20,20);
