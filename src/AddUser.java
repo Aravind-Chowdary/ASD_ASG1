@@ -163,6 +163,7 @@ public class AddUser extends JFrame implements ActionListener
             t3.setText("");
             t5.setText("");
         }
+
     }
     public static void main(String args[])
     {
