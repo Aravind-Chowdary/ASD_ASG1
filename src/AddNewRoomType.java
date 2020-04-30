@@ -33,7 +33,6 @@ public class AddNewRoomType extends JFrame implements ActionListener
         l3.setForeground(Color.blue);
         jf.add(l3);
 
-
         l2 = new JLabel("Enter Room Type Name*");
         //l2.setFont(f);
         l2.setBounds(150,160,170,25);
@@ -96,7 +95,7 @@ public class AddNewRoomType extends JFrame implements ActionListener
                     ps.executeUpdate();
 
                     int reply=JOptionPane.showConfirmDialog(null,"Room Type added successfully.Do you want add more Types?","Added Type",JOptionPane.YES_NO_OPTION);
-
+                    //Conformation and select again to add the new room type
                     if (reply == JOptionPane.YES_OPTION)
                     {
                         jf.setVisible(false);
