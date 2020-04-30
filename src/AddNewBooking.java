@@ -3,6 +3,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +15,15 @@ public class AddNewBooking extends JFrame implements ActionListener
     JFrame jf;
     JLabel l1,l2,l3,l4,l5,l7,l8,l9;
     JTextField t2,t3,t4,t5,t7;
+    JButton b0,b1,b2,b3;
     JComboBox c1;
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
     DB db = null;
     Connection con;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     AddNewBooking(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -118,6 +123,44 @@ public class AddNewBooking extends JFrame implements ActionListener
         }
 
         jf.add(c1);
+
+        b0 = new JButton("Save");
+        b0.setBounds(150,470,110,35);
+        b0.setToolTipText("click to save Booking details");
+        jf.add(b0);
+        b0.addActionListener(this);
+
+        b1 = new JButton("Clear");
+        b1.setBounds(300,470,110,35);
+        b1.setToolTipText("click to clear all textfields");
+        jf.add(b1);
+        b1.addActionListener(this);
+
+        b2= new JButton("All");
+        b2.setBounds(450,470,110,35);
+        b2.setToolTipText("click to view all booking details");
+        jf.add(b2);
+        b2.addActionListener(this);
+
+        b3= new JButton("View Rooms");
+        b3.setBounds(600,470,150,35);
+        b3.setToolTipText("click to view all room details");
+        jf.add(b3);
+        b3.addActionListener(this);
+
+        scrlPane.setBounds(80,520,900,220);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("BID");
+        model.addColumn("FULLNAME");
+        model.addColumn("ADDRESS");
+        model.addColumn("MOBILE");
+        model.addColumn("EMAIL");
+        model.addColumn("DESCRIPTION");
+        model.addColumn("ROOM");
+        model.addColumn("BOOKEDDATE");
+        model.addColumn("TDATE");
 
         jf.setTitle("ADD NEW BOOKING");
         jf.setLocation(20,20);
