@@ -54,6 +54,11 @@ public class AssignList extends JFrame
             System.out.println(se);
             JOptionPane.showMessageDialog(null,"SQL Error:"+se);
         }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null,"Error:"+e);
+        }
 
         jf.setTitle("List of Available Room Details");
         jf.setLocation(20,20);
