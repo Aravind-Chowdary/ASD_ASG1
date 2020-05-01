@@ -209,7 +209,7 @@ public class UpdateRoom extends JFrame implements ActionListener
             {
                 JOptionPane.showMessageDialog(this,"Please enter room id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
             }
-            else if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t4.getText()).equals(""))||((t5.getText()).equals("")))
+            else if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t4.getText()).equals("")))
             {
                 JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.ERROR_MESSAGE);
             }
@@ -218,6 +218,15 @@ public class UpdateRoom extends JFrame implements ActionListener
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
+                    stmt=con.createStatement();
+                    String str1="UPDATE room_manager SET rtitle='"+t2.getText()+"',room_size='"+t3.getText()+"',type='"+c1.getSelectedItem().toString()+"',availability='"+t4.getText()+"' where room_id="+t1.getText()+" or rtitle='"+t2.getText()+"' ";
+                    stmt.executeUpdate(str1);
+                    JOptionPane.showMessageDialog(null, "Record is updated");
+                    t1.setText("");
+                    t2.setText("");
+                    t3.setText("");
+                    t4.setText("");
+                    c1.setSelectedItem("select");
                     con.close();
                 } catch(SQLException se)
                 {
