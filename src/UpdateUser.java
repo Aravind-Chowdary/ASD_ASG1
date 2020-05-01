@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UpdateUser extends JFrame implements ActionListener
 {
@@ -15,6 +17,7 @@ public class UpdateUser extends JFrame implements ActionListener
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
+    Statement stmt;
     UpdateUser(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -131,6 +134,48 @@ public class UpdateUser extends JFrame implements ActionListener
                     {
                         JOptionPane.showMessageDialog(null,"Record is not available","Dialog",JOptionPane.WARNING_MESSAGE);
                     }
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+            }
+        }
+        else if(ae.getSource()==b1)
+        {//update
+            String email=t5.getText();
+            Pattern p=Pattern.compile("[_a-z_A-Z_0-9]*[0-9]*@[a-zA-Z0-9]*.[a-zA-Z0-9]*");
+            Matcher m=p.matcher(email);
+            boolean matchFound=m.matches();
+
+            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter user id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t5.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(!matchFound)
+            {
+                JOptionPane.showMessageDialog(this,"Invalid email id!","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    stmt=con.createStatement();
+                    String str1="UPDATE user_manager SET username='"+t2.getText()+"',password='"+t3.getText()+"',email='"+t5.getText()+"',role='"+c1.getSelectedItem().toString()+"' where u_id='"+t1.getText()+"' or username='"+t2.getText()+"' ";
+                    stmt.executeUpdate(str1);
+                    JOptionPane.showMessageDialog(null, "Record is updated");
+                    t1.setText("");
+                    t2.setText("");
+                    t3.setText("");
+                    t5.setText("");
                     con.close();
                 }
                 catch(SQLException se)
