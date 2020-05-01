@@ -25,6 +25,8 @@ public class UpdateRoomBooking extends JFrame implements ActionListener
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
+    PreparedStatement ps;
+    ResultSet rs;
     UpdateRoomBooking() {
         jf = new JFrame();
         jf.setLayout(null);
@@ -166,7 +168,53 @@ public class UpdateRoomBooking extends JFrame implements ActionListener
 
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource()==b0)
+        {
+            if(((t1.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter booking id  !","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            else
+            {//fetch
+                try
+                {
+                    int foundrec = 0;
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    ps=con.prepareStatement("select * from room_booking where b_id='"+t1.getText()+"' ");
+                    rs=ps.executeQuery();
+                    while(rs.next())
+                    {
+                        t1.setText(rs.getString(1));
+                        t2.setText(rs.getString(2));
+                        t3.setText(rs.getString(3));
+                        t4.setText(rs.getString(4));
+                        t5.setText(rs.getString(5));
+                        t7.setText(rs.getString(6));
+                        datemodel.setValue(rs.getDate(8));
+                        c1.setSelectedItem(rs.getString(7));
 
+                        foundrec = 1;
+                    }
+                    if (foundrec == 0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Record is not available","Dialog",JOptionPane.WARNING_MESSAGE);
+                    }
+                    con.close();
+                }
+
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
+            }
+        }
     }
 }
