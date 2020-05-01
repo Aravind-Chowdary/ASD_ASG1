@@ -14,7 +14,7 @@ import java.util.Properties;
 public class AssignRoomAvailability extends JFrame implements ActionListener
 {
     JFrame jf;
-    JLabel l1,l2,l3,l4;
+    JLabel l1,l2,l3,l4,l5;
     JButton b0,b1,b2;
     JTextField t4;
     JComboBox c1,c3;
@@ -23,9 +23,16 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
     AssignRoomAvailability(){
+        db = new DB();
         jf = new JFrame();
         jf.setLayout(null);
 
+        l5=new JLabel("Assign Room availability ");
+        l5.setFont(new Font("Times New Roman",Font.BOLD,25));
+        l5.setBounds(250,50,300,40);
+        l5.setForeground(Color.blue);
+        jf.add(l5);
+        
         l1 = new JLabel("Select Room *");
         l1.setBounds(150,120,130,25);
         jf.add(l1);
