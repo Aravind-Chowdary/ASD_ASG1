@@ -20,9 +20,9 @@ class LoginClerk extends JFrame implements ActionListener {
         f = new Font("Times New Roman", Font.BOLD, 20);
         jf.setLayout(null);
 
-        l5 = new JLabel("Login Here");
+        l5 = new JLabel("Clerk Login Here");
         l5.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        l5.setBounds(300, 100, 300, 40);
+        l5.setBounds(200, 100, 300, 40);
         jf.add(l5);
 
         l1 = new JLabel("User Name : ");
