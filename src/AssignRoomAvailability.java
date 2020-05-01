@@ -7,9 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Date;
 import java.util.Properties;
 
 public class AssignRoomAvailability extends JFrame implements ActionListener
@@ -21,6 +20,7 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
     JComboBox c1,c3;
     DB db =null;
     Connection con;
+    PreparedStatement ps;
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
     DefaultTableModel model = new DefaultTableModel();
@@ -134,7 +134,55 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
 
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource()==b0)
+        {
+
+
+            if((c1.getSelectedItem().toString().equals("Select Room")) || (c3.getSelectedItem().toString().equals("Select Day Type")) || datePicker.getModel().getValue()=="" ||t4.getText()=="" )
+            {
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+
+                    ps=con.prepareStatement("insert into room_availbility (room,adate,dtype,atime) values(?,?,?,?)");
+                    ps.setString(1,c1.getSelectedItem().toString());
+                    ps.setDate(2, (java.sql.Date) datePicker.getModel().getValue());
+                    ps.setString(3,c3.getSelectedItem().toString());
+                    ps.setString(4, t4.getText());
+                    ps.executeUpdate();
+
+
+                    int reply=JOptionPane.showConfirmDialog(null,"Date assigned successfully.Do you want assign more ?","Assigned Data ",JOptionPane.YES_NO_OPTION);
+
+                    if (reply == JOptionPane.YES_OPTION)
+                    {
+                        jf.setVisible(false);
+                        new AssignRoomAvailability();
+                    }
+                    else if (reply == JOptionPane.NO_OPTION)
+                    {
+                        jf.setVisible(false);
+                    }con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
+            }
+        }
 
     }
     public static void main(String args[])
