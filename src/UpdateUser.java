@@ -13,6 +13,8 @@ public class UpdateUser extends JFrame implements ActionListener
     JComboBox c1;
     DB db = null;
     Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
     UpdateUser(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -111,8 +113,24 @@ public class UpdateUser extends JFrame implements ActionListener
             }
             else {
                 try {
-                    con = db.getConnection();
+                    int foundrec = 0;
+                    con=db.getConnection();
                     System.out.println("Connected to database.");
+                    ps=con.prepareStatement("select * from user_manager where u_id='"+t1.getText()+"' or username='"+t2.getText()+"'");
+                    rs=ps.executeQuery();
+                    while(rs.next())
+                    {
+                        t1.setText(rs.getString(1));
+                        t2.setText(rs.getString(2));
+                        t3.setText(rs.getString(3));
+                        c1.setSelectedItem(rs.getString(4));
+                        t5.setText(rs.getString(5));
+                        foundrec = 1;
+                    }
+                    if (foundrec == 0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Record is not available","Dialog",JOptionPane.WARNING_MESSAGE);
+                    }
                     con.close();
                 }
                 catch(SQLException se)
