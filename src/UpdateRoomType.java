@@ -48,22 +48,27 @@ public class UpdateRoomType extends JFrame implements ActionListener
         b0 = new JButton("Open");
         b0.setBounds(150,230,110,35);
         jf.add(b0);
+        b0.addActionListener(this);
 
         b1 = new JButton("Update");
         b1.setBounds(300,230,110,35);
         jf.add(b1);
+        b1.addActionListener(this);
 
         b2 = new JButton("Clear");
         b2.setBounds(450,230,110,35);
         jf.add(b2);
+        b2.addActionListener(this);
 
         b3 = new JButton("All");
         b3.setBounds(600,230,110,35);
         jf.add(b3);
+        b3.addActionListener(this);
 
         b4 = new JButton("Delete");
         b4.setBounds(750,230,110,35);
         jf.add(b4);
+        b4.addActionListener(this);
 
 
         scrlPane.setBounds(80,380,600,300);
