@@ -185,6 +185,13 @@ public class UpdateUser extends JFrame implements ActionListener
                 }
             }
         }
+        else if(ae.getSource()==b2)
+        {//clear
+            t1.setText("");
+            t2.setText("");
+            t3.setText("");
+            t5.setText("");
+        }
     }
     public static void main(String args[])
     {
