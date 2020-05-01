@@ -199,7 +199,23 @@ public class AddNewBooking extends JFrame implements ActionListener
                     ps.setDate(2,(Date)datePicker.getModel().getValue());
                     ps.setString(1, c1.getSelectedItem().toString());
                     ResultSet rsnew = ps.executeQuery();
-                    con.close();
+                    if(rsnew.next()){
+                        ps=con.prepareStatement("insert into room_booking (fullname,address,mobile,email,description,bdate,room)values(?,?,?,?,?,?,?)");
+                        ps.setString(1,t2.getText());
+                        ps.setString(2,t3.getText());
+                        ps.setString(3,t4.getText());
+                        ps.setString(4,t5.getText());
+                        ps.setString(5,t7.getText());
+                        ps.setDate(6,(Date)datePicker.getModel().getValue());
+                        ps.setString(7, c1.getSelectedItem().toString());
+                        ps.executeUpdate();
+
+                        con.close();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"* Room is not availble on that date"," Warning ", JOptionPane.WARNING_MESSAGE);
+
+                    }
                 }
                 catch(SQLException se)
                 {
