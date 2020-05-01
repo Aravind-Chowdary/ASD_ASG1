@@ -246,6 +246,14 @@ public class AddNewBooking extends JFrame implements ActionListener
                 }
             }
         }
+        else if(ae.getSource()==b1)
+        {
+            t2.setText("");
+            t3.setText("");
+            t4.setText("");
+            t5.setText("");
+            t7.setText("");
+        }
 
     }
     public  static void main(String args[]){
