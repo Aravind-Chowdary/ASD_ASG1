@@ -208,6 +208,7 @@ public class AddNewBooking extends JFrame implements ActionListener
                         ps.setString(5,t7.getText());
                         ps.setDate(6,(Date)datePicker.getModel().getValue());
                         ps.setString(7, c1.getSelectedItem().toString());
+
                         ps.executeUpdate();
 
                         ps=con.prepareStatement("update room_availbility set status='booked' where room=? and adate=?");
@@ -215,7 +216,18 @@ public class AddNewBooking extends JFrame implements ActionListener
                         ps.setString(1, c1.getSelectedItem().toString());
                         ps.executeUpdate();
 
-                        con.close();
+
+                        int reply=JOptionPane.showConfirmDialog(null,"Booking added successfully.Do you want add more?","Added ",JOptionPane.YES_NO_OPTION);
+
+                        if (reply == JOptionPane.YES_OPTION)
+                        {
+                            jf.setVisible(false);
+                            new AddNewBooking();
+                        }
+                        else if (reply == JOptionPane.NO_OPTION)
+                        {
+                            jf.setVisible(false);
+                        }con.close();
                     }
                     else{
                         JOptionPane.showMessageDialog(this,"* Room is not availble on that date"," Warning ", JOptionPane.WARNING_MESSAGE);
