@@ -289,6 +289,59 @@ public class UpdateRoomBooking extends JFrame implements ActionListener
             }
         }
 
+        else if(ae.getSource()==b4)
+        {//update
+
+            String email=t5.getText();
+            Pattern p=Pattern.compile("[_a-z_A-Z_0-9]*[0-9]*@[a-zA-Z0-9]*.[a-zA-Z0-9]*");
+            Matcher m=p.matcher(email);
+            boolean matchFound=m.matches();
+
+            if(((t1.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter id !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+
+
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    stmt=con.createStatement();
+                    String str1="delete from room_booking where b_id='"+t1.getText()+"' ";
+                    stmt.executeUpdate(str1);
+
+
+                    ps=con.prepareStatement("update room_availbility set status='available' where room=? and adate=?");
+                    ps.setDate(2,(Date)datePicker.getModel().getValue());
+                    ps.setString(1, c1.getSelectedItem().toString());
+                    ps.executeUpdate();
+
+
+                    JOptionPane.showMessageDialog(null, "Record is deleted");
+                    t1.setText("");
+                    t2.setText("");
+                    t3.setText("");
+                    t4.setText("");
+                    t5.setText("");
+                    t7.setText("");
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
+            }
+        }
+
     }
 
 
