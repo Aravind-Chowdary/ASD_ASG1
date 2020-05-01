@@ -175,7 +175,11 @@ public class AddNewRoom extends JFrame implements ActionListener
                     System.out.println(se);
                     JOptionPane.showMessageDialog(null, "SQL Error:" + se);
                 }
-
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
 
             }
         } else if (ae.getSource() == b1) {
