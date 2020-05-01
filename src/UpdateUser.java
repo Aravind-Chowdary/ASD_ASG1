@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class UpdateUser extends JFrame implements ActionListener
 {
@@ -10,6 +11,8 @@ public class UpdateUser extends JFrame implements ActionListener
     JTextField t1,t2,t3,t5;
     JButton b0,b1,b2,b3,b4;
     JComboBox c1;
+    DB db = null;
+    Connection con;
     UpdateUser(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -102,7 +105,23 @@ public class UpdateUser extends JFrame implements ActionListener
     }
     public void actionPerformed(ActionEvent ae)
     {
-
+        if(ae.getSource()==b0) {
+            if (((t1.getText()).equals("")) && ((t2.getText()).equals(""))) {
+                JOptionPane.showMessageDialog(this, "Please enter user id or name !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                try {
+                    con = db.getConnection();
+                    System.out.println("Connected to database.");
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+            }
+        }
     }
     public static void main(String args[])
     {
