@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ public class UpdateUser extends JFrame implements ActionListener
     PreparedStatement ps;
     ResultSet rs;
     Statement stmt;
+    DefaultTableModel model = new DefaultTableModel();
     UpdateUser(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -192,6 +194,38 @@ public class UpdateUser extends JFrame implements ActionListener
             t3.setText("");
             t5.setText("");
         }
+        else if(ae.getSource()==b3)
+        {//list
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }
+            int r = 0;
+            try
+            {
+                con=db.getConnection();
+                System.out.println("Connected to database.");
+                stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                rs = stmt.executeQuery("SELECT * from user_manager" );
+                while(rs.next())
+                {
+                    model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5) });
+                }
+                con.close();
+            }
+            catch(SQLException se)
+            {
+                System.out.println(se);
+                JOptionPane.showMessageDialog(null,"SQL Error"+se);
+            }
+            catch(Exception e)
+            {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null,"Error:"+e);
+            }
+        }
+
     }
     public static void main(String args[])
     {
