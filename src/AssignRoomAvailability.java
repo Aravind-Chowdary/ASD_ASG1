@@ -3,6 +3,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +23,9 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
     Connection con;
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
+    DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     AssignRoomAvailability(){
         db = new DB();
         jf = new JFrame();
@@ -57,6 +61,7 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         {
             e.printStackTrace();
         }
+
         l2= new JLabel("Select Date *");
         l2.setBounds(150,160,170,25);
         jf.add(l2);
@@ -85,7 +90,6 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         jf.add(c3);
 
         l4 = new JLabel("Time *");
-        //l3.setFont(f);
         l4.setBounds(150,240,210,25);
         jf.add(l4);
 
@@ -96,15 +100,28 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
 
         b0 = new JButton("Assign");
         b0.setBounds(150,320,110,35);b0.setToolTipText("click to save details");
-        jf.add(b0);b0.addActionListener(this);
+        jf.add(b0);
+        b0.addActionListener(this);
 
         b1 = new JButton("Clear");
         b1.setBounds(300,320,110,35);b1.setToolTipText("click to clear all textfilds");
-        jf.add(b1); b1.addActionListener(this);
+        jf.add(b1);
+        b1.addActionListener(this);
 
         b2= new JButton("All");
         b2.setBounds(450,320,110,35);b2.setToolTipText("click to view all  details");
-        jf.add(b2); b2.addActionListener(this);
+        jf.add(b2);
+        b2.addActionListener(this);
+
+        scrlPane.setBounds(80,380,900,600);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+
+        model.addColumn("A_ID");
+        model.addColumn("Room");
+        model.addColumn("Date");
+        model.addColumn("Type");
+        model.addColumn("Time");
 
         jf.setTitle("Assign Day and Room Availability");
         jf.setLocation(20,20);
