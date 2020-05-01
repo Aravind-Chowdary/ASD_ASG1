@@ -160,7 +160,17 @@ public class AddNewRoom extends JFrame implements ActionListener
                     ps.setString(4,t4.getText());
 
                     ps.executeUpdate();
-                    con.close();
+                    int reply=JOptionPane.showConfirmDialog(null,"Room added successfully.Do you want add more Rooms?","Added Room",JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION)
+                    {
+                        jf.setVisible(false);
+                        new AddNewRoom();
+                    }
+                    else if (reply == JOptionPane.NO_OPTION)
+                    {
+                        jf.setVisible(false);
+                    }con.close();
+
                 } catch (SQLException se) {
                     System.out.println(se);
                     JOptionPane.showMessageDialog(null, "SQL Error:" + se);
