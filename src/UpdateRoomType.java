@@ -24,9 +24,8 @@ public class UpdateRoomType extends JFrame implements ActionListener
         jf=new JFrame();
         Dimension screen= Toolkit.getDefaultToolkit().getScreenSize();
         jf.setLayout(null);
-
+        db = new DB();
         l1= new JLabel("Room Type id *");
-        //l1.setFont(f);
         l1.setBounds(150,120,130,25);
         jf.add(l1);
 
@@ -36,7 +35,6 @@ public class UpdateRoomType extends JFrame implements ActionListener
         jf.add(t1);
 
         l2 = new JLabel(" Room Type Name*");
-        //l2.setFont(f);
         l2.setBounds(150,160,170,25);
         jf.add(l2);
 
@@ -79,7 +77,6 @@ public class UpdateRoomType extends JFrame implements ActionListener
         model.addColumn("Room_Type_NAME");
 
         jf.setTitle("Update Zone");
-        // jf.setSize(900,700);
         jf.setLocation(20,20);
         jf.setResizable(false);
         jf.getContentPane().setBackground(Color.cyan);
