@@ -197,7 +197,7 @@ public class AddNewBooking extends JFrame implements ActionListener
                 {
                     con=db.getConnection();
                     System.out.println("Connected to database.");
-                    ps=con.prepareStatement("select * from  room_availbility where  status='availble' and  room=? and adate=?");
+                    ps=con.prepareStatement("select * from  room_availbility where  status='available' and  room=? and adate=?");
                     ps.setDate(2,(Date)datePicker.getModel().getValue());
                     ps.setString(1, c1.getSelectedItem().toString());
                     ResultSet rsnew = ps.executeQuery();
