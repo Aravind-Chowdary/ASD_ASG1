@@ -183,7 +183,10 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
                 }
             }
         }
-
+        else if(ae.getSource()==b1)
+        {
+            t4.setText("");
+        }
     }
     public static void main(String args[])
     {
