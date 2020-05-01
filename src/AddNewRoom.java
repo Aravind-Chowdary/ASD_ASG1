@@ -25,6 +25,7 @@ public class AddNewRoom extends JFrame implements ActionListener
         jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
         jf.setLayout(null);
+        db = new DB();
 
         l6=new JLabel("Add New Room");
         l6.setFont(new Font("Times New Roman",Font.BOLD,25));
@@ -50,43 +51,39 @@ public class AddNewRoom extends JFrame implements ActionListener
         jf.add(t3);
 
         l4 = new JLabel("Availbility*");
-        //l3.setFont(f);
         l4.setBounds(150,240,170,25);
         jf.add(l4);
 
         t4=new JTextField(20);
         t4.setBounds(320,240,250,25);
         t4.setToolTipText("Availbility");
+        t4.setText(1+"");
         jf.add(t4);
 
-        l5 = new JLabel("Date*");
-        //l3.setFont(f);
-        l5.setBounds(150,280,170,25);
-        jf.add(l5);
+        //l5 = new JLabel("Date*");
+        //l5.setBounds(150,280,170,25);
+        //jf.add(l5);
 
+        //t5=new JTextField(20);
+        //t5.setBounds(320,280,250,25);
+        //t5.setToolTipText("Date");
+        //jf.add(t5);
 
-        t5=new JTextField(20);
-        t5.setBounds(320,280,250,25);
-        t5.setToolTipText("Date");
-        jf.add(t5);
+        //l7 = new JLabel("Time*");
+        //l7.setBounds(150,320,170,25);
+        //jf.add(l7);
 
-        l7 = new JLabel("Time*");
-        //l3.setFont(f);
-        l7.setBounds(150,320,170,25);
-        jf.add(l7);
-
-        t7=new JTextField(20);
-        t7.setBounds(320,320,250,25);
-        t7.setToolTipText("Time");
-        jf.add(t7);
+        //t7=new JTextField(20);
+        //t7.setBounds(320,320,250,25);
+        //t7.setToolTipText("Time");
+        //jf.add(t7);
 
         l8 = new JLabel("Type*");
-        //l3.setFont(f);
-        l8.setBounds(150,360,170,25);
+        l8.setBounds(150,280,170,25);
         jf.add(l8);
 
         c1=new JComboBox();
-        c1.setBounds(320,360,250,25);
+        c1.setBounds(320,280,250,25);
         c1.setToolTipText("Enter Type");
         c1.addItem("select");
         try {
@@ -109,22 +106,24 @@ public class AddNewRoom extends JFrame implements ActionListener
         jf.add(c1);
 
         b0 = new JButton("Save");
-        b0.setBounds(150,390,110,35);
+        b0.setBounds(150,340,110,35);
         b0.setToolTipText("click to save room details");
         jf.add(b0);
         b0.addActionListener(this);
 
         b1 = new JButton("Clear");
-        b1.setBounds(300,390,110,35);
+        b1.setBounds(300,340,110,35);
         b1.setToolTipText("click to clear all textfilds");
         jf.add(b1);
+        b1.addActionListener(this);
 
         b2= new JButton("All");
-        b2.setBounds(450,390,110,35);
+        b2.setBounds(450,340,110,35);
         b2.setToolTipText("click to view all room details");
         jf.add(b2);
+        b2.addActionListener(this);
 
-        scrlPane.setBounds(120,450,900,300);
+        scrlPane.setBounds(120,420,900,330);
         jf.add(scrlPane);
         tabGrid.setFont(new Font ("Times New Roman",0,15));
 
@@ -133,13 +132,11 @@ public class AddNewRoom extends JFrame implements ActionListener
         model.addColumn("SIZE");
         model.addColumn("TYPE");
         model.addColumn("AVAILBILITY");
-        model.addColumn("DATE");
-        model.addColumn("TIME");
+
         jf.setTitle("Add New Room");
-        //jf.setSize(900,700);
         jf.setLocation(20,20);
         jf.setResizable(false);
-        jf.getContentPane().setBackground(Color.lightGray);
+        jf.getContentPane().setBackground(Color.cyan);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         jf.setBounds(0,0,screenSize.width, screenSize.height-50);
         jf.setVisible(true);
@@ -150,19 +147,17 @@ public class AddNewRoom extends JFrame implements ActionListener
         if (ae.getSource() == b0) {
 
 
-            if (((t2.getText()).equals("")) || ((t3.getText()).equals("")) || ((t4.getText()).equals("")) || ((t5.getText()).equals("")) || (c1.getSelectedItem().toString().equals("select"))) {
+            if (((t2.getText()).equals("")) || ((t3.getText()).equals("")) || ((t4.getText()).equals("")) || (c1.getSelectedItem().toString().equals("select"))) {
                 JOptionPane.showMessageDialog(this, "* Detail are Missing !", "Warning!!!", JOptionPane.WARNING_MESSAGE);
             } else {
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
-                    ps = con.prepareStatement("insert into room_manager (rtitle,room_size,type,availability,adate,atime)values(?,?,?,?,?,?)");
-                    ps.setString(1, t2.getText());
-                    ps.setString(2, t3.getText());
-                    ps.setString(3, c1.getSelectedItem().toString());
-                    ps.setString(4, t4.getText());
-                    ps.setString(5, t5.getText());
-                    ps.setString(6, t7.getText());
+                    ps = con.prepareStatement("insert into room_manager(rtitle,room_size,type,availability) values(?,?,?,?)");
+                    ps.setString(1,t2.getText());
+                    ps.setString(2,t3.getText());
+                    ps.setString(3,c1.getSelectedItem().toString());
+                    ps.setString(4,t4.getText());
 
                     ps.executeUpdate();
                     con.close();
@@ -178,30 +173,37 @@ public class AddNewRoom extends JFrame implements ActionListener
             t3.setText("");
             t4.setText("");
             t5.setText("");
-        } else if (ae.getSource() == b2) {
-            {//list
-                if (model.getRowCount() > 0) {
-                    for (int i = model.getRowCount() - 1; i > -1; i--) {
-                        model.removeRow(i);
-                    }
-                }
-                int r = 0;
-                try {
-                    con = db.getConnection();
-                    System.out.println("Connected to database.");
-                    stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                    rs = stmt.executeQuery("select * from room_manager " );
-                    while(rs.next())
-                    {
-                        model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7) });
-                    }
-                    con.close();
-                } catch (SQLException se) {
-                    System.out.println(se);
-                    JOptionPane.showMessageDialog(null, "SQL Error:" + se);
+        }
+        else if(ae.getSource()==b2)
+        {//list
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
                 }
             }
-
+            int r = 0;
+            try
+            {
+                con=db.getConnection();
+                System.out.println("Connected to database.");
+                stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                rs = stmt.executeQuery("select * from room_manager " );
+                while(rs.next())
+                {
+                    model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5) });
+                }
+                con.close();
+            }
+            catch(SQLException se)
+            {
+                System.out.println(se);
+                JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+            }
+            catch(Exception e)
+            {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null,"Error:"+e);
+            }
         }
     }
     public static void main(String args[])
