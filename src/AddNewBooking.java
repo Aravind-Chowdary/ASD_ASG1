@@ -254,6 +254,10 @@ public class AddNewBooking extends JFrame implements ActionListener
             t5.setText("");
             t7.setText("");
         }
+        else if(ae.getSource()==b3)
+        {
+            new AssignList();
+        }
 
     }
     public  static void main(String args[]){
