@@ -21,6 +21,8 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
     DB db =null;
     Connection con;
     PreparedStatement ps;
+    Statement stmt;
+    ResultSet rs;
     JDatePickerImpl datePicker;
     SqlDateModel datemodel;
     DefaultTableModel model = new DefaultTableModel();
@@ -186,6 +188,37 @@ public class AssignRoomAvailability extends JFrame implements ActionListener
         else if(ae.getSource()==b1)
         {
             t4.setText("");
+        }
+        else if(ae.getSource()==b2)
+        {//list
+            if (model.getRowCount() > 0) {
+                for (int i = model.getRowCount() - 1; i > -1; i--) {
+                    model.removeRow(i);
+                }
+            }
+            int r = 0;
+            try
+            {
+                con=db.getConnection();
+                System.out.println("Connected to database.");
+                stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                rs = stmt.executeQuery("select * from room_availbility " );
+                while(rs.next())
+                {
+                    model.insertRow(r++, new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5) });
+                }
+                con.close();
+            }
+            catch(SQLException se)
+            {
+                System.out.println(se);
+                JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+            }
+            catch(Exception e)
+            {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null,"Error:"+e);
+            }
         }
     }
     public static void main(String args[])
