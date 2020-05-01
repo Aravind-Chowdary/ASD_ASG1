@@ -8,8 +8,8 @@ public class ClerkMenu extends JFrame implements ActionListener
     JLabel l1;
     GridBagLayout gbl;
     JMenuBar mbar;
-    JMenu m6,m10;
-    JMenuItem m6_1,m6_2,m10_1,m10_2;
+    JMenu m5,m6,m10;
+    JMenuItem m5_1,m5_2,m6_1,m6_2,m10_1,m10_2;
     public ClerkMenu()
     {
         jf = new JFrame();
@@ -46,6 +46,20 @@ public class ClerkMenu extends JFrame implements ActionListener
         m10.addActionListener(this);
         m10_1.addActionListener(this);
         m10_2.addActionListener(this);
+
+
+        m5=new JMenu("Exit");
+        mbar.add(m5);
+        m5_1 = new JMenuItem("Exit");
+        m5.add(m5_1);
+        m5_2 = new JMenuItem("Logout");
+        m5.add(m5_2);
+
+        m5.addActionListener(this);
+        m5_1.addActionListener(this);
+        m5_2.addActionListener(this);
+
+
         jf.setTitle("Clerk Menu");
         jf.setLocation(20,20);
         jf.setResizable(false);
@@ -73,6 +87,15 @@ public class ClerkMenu extends JFrame implements ActionListener
         else if(ae.getSource()==m10_2)
         {
             new AssignList();
+        }
+        else if(ae.getSource()==m5_1)
+        {
+            System.exit(0);
+        }
+        else if(ae.getSource()==m5_2)
+        {
+            jf.setVisible(false);
+            new LoginClerk();
         }
     }
 
