@@ -280,6 +280,7 @@ public class UpdateRoom extends JFrame implements ActionListener
                 try {
                     con = db.getConnection();
                     System.out.println("Connected to database.");
+                    stmt=con.createStatement();
                     String str1="delete from room_manager where room_id="+t1.getText()+" or rtitle='"+t2.getText()+"' ";
                     stmt.executeUpdate(str1);
                     JOptionPane.showMessageDialog(null, "Record is deleted");
@@ -287,7 +288,6 @@ public class UpdateRoom extends JFrame implements ActionListener
                     t2.setText("");
                     t3.setText("");
                     t4.setText("");
-                    t5.setText("");
                     c1.setSelectedItem("select");
                     con.close();
                 } catch (SQLException se) {
