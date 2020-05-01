@@ -293,6 +293,6 @@ public class AddNewBooking extends JFrame implements ActionListener
         }
     }
     public  static void main(String args[]){
-
+        new AddNewBooking();
     }
 }
