@@ -20,9 +20,12 @@ public class UpdateUser extends JFrame implements ActionListener
     ResultSet rs;
     Statement stmt;
     DefaultTableModel model = new DefaultTableModel();
+    JTable tabGrid = new JTable(model);
+    JScrollPane scrlPane = new JScrollPane(tabGrid);
     UpdateUser(){
         jf = new JFrame();
         jf.setLayout(null);
+        db = new DB();
 
         l1= new JLabel("User id *");
         l1.setBounds(150,120,130,25);
@@ -95,6 +98,15 @@ public class UpdateUser extends JFrame implements ActionListener
         b3.setToolTipText("click to view all User details");
         jf.add(b3);
         b3.addActionListener(this);
+
+        scrlPane.setBounds(80,420,900,300);
+        jf.add(scrlPane);
+        tabGrid.setFont(new Font ("Times New Roman",0,15));
+        model.addColumn("U_ID");
+        model.addColumn("USER_NAME");
+        model.addColumn("USER_PASSWORD");
+        model.addColumn("USER_ROLE");
+        model.addColumn("USER_EMAIL");
 
         b4 = new JButton("Delete");
         b4.setBounds(750,350,110,35);
