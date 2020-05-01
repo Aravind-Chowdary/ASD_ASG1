@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UpdateRoomBooking extends JFrame implements ActionListener
 {
@@ -26,6 +28,7 @@ public class UpdateRoomBooking extends JFrame implements ActionListener
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
     PreparedStatement ps;
+    Statement stmt;
     ResultSet rs;
     UpdateRoomBooking() {
         jf = new JFrame();
@@ -216,5 +219,82 @@ public class UpdateRoomBooking extends JFrame implements ActionListener
                 }
             }
         }
+
+        else if(ae.getSource()==b1)
+        {//update
+
+            String email=t5.getText();
+            Pattern p=Pattern.compile("[_a-z_A-Z_0-9]*[0-9]*@[a-zA-Z0-9]*.[a-zA-Z0-9]*");
+            Matcher m=p.matcher(email);
+            boolean matchFound=m.matches();
+
+            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter mr id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t4.getText()).equals(""))||((t5.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    ps=con.prepareStatement("select * from  room_availbility where  status='availble' and  room=? and adate=?");
+                    ps.setDate(2,(Date)datePicker.getModel().getValue());
+                    ps.setString(1, c1.getSelectedItem().toString());
+                    ResultSet rsnew = ps.executeQuery();
+                    if(rsnew.next()){
+
+
+                        stmt=con.createStatement();
+                        String str1="UPDATE room_booking SET fullname='"+t2.getText()+"',address='"+t3.getText()+"',mobile='"+t4.getText()+"',email='"+t5.getText()+"',description='"+t7.getText()+"',room='"+c1.getSelectedItem().toString()+"',bdate='"+datePicker.getModel().getValue()+"' where b_id='"+t1.getText()+"' ";
+                        stmt.executeUpdate(str1);
+
+
+
+                        ps=con.prepareStatement("update room_availbility set status='booked' where room=? and adate=?");
+                        ps.setDate(2,(Date)datePicker.getModel().getValue());
+                        ps.setString(1, c1.getSelectedItem().toString());
+                        ps.executeUpdate();
+
+                        JOptionPane.showMessageDialog(null, "Record is updated");
+                        t1.setText("");
+                        t2.setText("");
+                        t3.setText("");
+                        t4.setText("");
+                        t5.setText("");
+                        t7.setText("");
+                        con.close();
+                    }
+
+                    else{
+                        JOptionPane.showMessageDialog(this,"* Room is not availble on that date"," Warning ", JOptionPane.WARNING_MESSAGE);
+
+                    }
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
+            }
+        }
+
     }
+
+
+    public static void main(String args[])
+    {
+        new UpdateRoomBooking();
+    }
+
 }
