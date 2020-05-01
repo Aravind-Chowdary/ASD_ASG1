@@ -3,18 +3,16 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AddUser extends JFrame implements ActionListener
 {
-
     JFrame jf;
     JLabel l1,l2,l3,l4,l5;
-    JTextField t2,t3,t5;
+    JTextField t2,t5;
+    JPasswordField t3;
     JComboBox c1;
     JButton b0,b1,b2;
     DB db =null;
@@ -24,15 +22,16 @@ public class AddUser extends JFrame implements ActionListener
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
-    AddUser(){
-        jf = new JFrame();
-        jf.setLayout(null);
+    AddUser()
+    {
         db = new DB();
+        jf=new JFrame();
         f = new Font("Times New Roman",Font.BOLD,20);
+        jf.setLayout(null);
 
         l1=new JLabel("Add New User");
-        l1.setBounds(150,90,300,40);
         l1.setFont(new Font("Times New Roman",Font.BOLD,25));
+        l1.setBounds(250,50,300,40);
         l1.setForeground(Color.blue);
         jf.add(l1);
 
@@ -69,8 +68,7 @@ public class AddUser extends JFrame implements ActionListener
         jf.add(l5);
 
         t5=new JTextField(20);
-        t5.setBounds(320,280,250,25);
-        t5.setToolTipText("Enter email id");
+        t5.setBounds(320,280,250,25);t5.setToolTipText("Enter email id");
         jf.add(t5);
 
         b0 = new JButton("Save",db.getImage("images/save.png"));
@@ -78,7 +76,7 @@ public class AddUser extends JFrame implements ActionListener
         jf.add(b0);b0.addActionListener(this);
 
         b1 = new JButton("Clear",db.getImage("images/clear.png"));
-        b1.setBounds(300,350,110,35);b1.setToolTipText("click to clear all textfilds");
+        b1.setBounds(300,350,110,35);b1.setToolTipText("click to clear all textfields");
         jf.add(b1); b1.addActionListener(this);
 
         b2= new JButton("All",db.getImage("images/all.png"));
@@ -103,7 +101,9 @@ public class AddUser extends JFrame implements ActionListener
         jf.setBounds(0,0,screenSize.width, screenSize.height-50);
         jf.setVisible(true);
     }
-    public void actionPerformed(ActionEvent e) {
+
+    public void actionPerformed(ActionEvent e)
+    {
         if(e.getSource()==b0)
         {
             String email=t5.getText();
@@ -156,14 +156,11 @@ public class AddUser extends JFrame implements ActionListener
                 }
             }
         }
-        else if(e.getSource()==b1)
-        {//clear
-            //t1.setText("");
+        else if(e.getSource()==b1) {
             t2.setText("");
             t3.setText("");
             t5.setText("");
         }
-
     }
     public static void main(String args[])
     {
