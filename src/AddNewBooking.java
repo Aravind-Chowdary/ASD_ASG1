@@ -210,6 +210,11 @@ public class AddNewBooking extends JFrame implements ActionListener
                         ps.setString(7, c1.getSelectedItem().toString());
                         ps.executeUpdate();
 
+                        ps=con.prepareStatement("update room_availbility set status='booked' where room=? and adate=?");
+                        ps.setDate(2,(Date)datePicker.getModel().getValue());
+                        ps.setString(1, c1.getSelectedItem().toString());
+                        ps.executeUpdate();
+
                         con.close();
                     }
                     else{
