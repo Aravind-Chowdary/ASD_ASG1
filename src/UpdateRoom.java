@@ -71,30 +71,30 @@ public class UpdateRoom extends JFrame implements ActionListener
         jf.add(t4);
 
 
-        l5 = new JLabel("Date*");
-        l5.setBounds(150,280,170,25);
-        jf.add(l5);
+        //l5 = new JLabel("Date*");
+        //l5.setBounds(150,280,170,25);
+        //jf.add(l5);
 
-        t5=new JTextField(20);
-        t5.setBounds(320,280,250,25);
-        t5.setToolTipText("Date");
-        jf.add(t5);
+        //t5=new JTextField(20);
+        //t5.setBounds(320,280,250,25);
+        //t5.setToolTipText("Date");
+        //jf.add(t5);
 
-        l7 = new JLabel("Time*");
-        l7.setBounds(150,320,170,25);
-        jf.add(l7);
+        //l7 = new JLabel("Time*");
+        //l7.setBounds(150,320,170,25);
+        //jf.add(l7);
 
-        t7=new JTextField(20);
-        t7.setBounds(320,320,250,25);
-        t7.setToolTipText("Time");
-        jf.add(t7);
+        //t7=new JTextField(20);
+        //t7.setBounds(320,320,250,25);
+        //t7.setToolTipText("Time");
+        //jf.add(t7);
 
         l8 = new JLabel("Type*");
-        l8.setBounds(150,360,170,25);
+        l8.setBounds(150,280,170,25);
         jf.add(l8);
         db = new DB();
         c1=new JComboBox();
-        c1.setBounds(320,360,250,25);c1.setToolTipText("Enter Type");
+        c1.setBounds(320,280,250,25);c1.setToolTipText("Enter Type");
         c1.addItem("select");
         try {
             con=db.getConnection();
@@ -116,36 +116,36 @@ public class UpdateRoom extends JFrame implements ActionListener
         jf.add(c1);
 
         b0 = new JButton("Open");
-        b0.setBounds(150,390,110,35);
+        b0.setBounds(150,330,110,35);
         b0.setToolTipText("click to open room details");
         b0.addActionListener(this);
         jf.add(b0);
 
         b1 = new JButton("Update");
-        b1.setBounds(300,390,110,35);
+        b1.setBounds(300,330,110,35);
         b1.setToolTipText("click to update room details");
         b1.addActionListener(this);
         jf.add(b1);
 
         b2 = new JButton("Clear");
-        b2.setBounds(450,390,110,35);
+        b2.setBounds(450,330,110,35);
         b2.setToolTipText("click to clear all");
         b2.addActionListener(this);
         jf.add(b2);
 
         b3 = new JButton("All");
-        b3.setBounds(600,390,110,35);
+        b3.setBounds(600,330,110,35);
         b3.setToolTipText("click to view all room details");
         b3.addActionListener(this);
         jf.add(b3);
 
         b4 = new JButton("Delete");
-        b4.setBounds(750,390,110,35);
+        b4.setBounds(750,330,110,35);
         b4.setToolTipText("click to delete room details");
         b4.addActionListener(this);
         jf.add(b4);
 
-        scrlPane.setBounds(120,450,900,300);
+        scrlPane.setBounds(120,400,900,340);
         jf.add(scrlPane);
         tabGrid.setFont(new Font ("Times New Roman",0,15));
 
