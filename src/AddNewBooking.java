@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddNewBooking extends JFrame implements ActionListener
 {
@@ -24,6 +26,7 @@ public class AddNewBooking extends JFrame implements ActionListener
     DefaultTableModel model = new DefaultTableModel();
     JTable tabGrid = new JTable(model);
     JScrollPane scrlPane = new JScrollPane(tabGrid);
+    PreparedStatement ps;
     AddNewBooking(){
         jf = new JFrame();
         jf.setLayout(null);
@@ -172,7 +175,44 @@ public class AddNewBooking extends JFrame implements ActionListener
 
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource()==b0)
+        {
+            String mob = t4.getText();
+            String email=t5.getText();
+            Pattern p=Pattern.compile("[_a-z_A-Z_0-9]+[0-9]*@[a-zA-Z0-9]+.[a-zA-Z0-9]+");
+            Matcher m=p.matcher(email);
+            boolean matchFound=m.matches();
+
+            if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t4.getText()).equals(""))||((t5.getText()).equals(""))||((t7.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    ps=con.prepareStatement("select * from  room_availbility where  status='availble' and  room=? and adate=?");
+                    ps.setDate(2,(Date)datePicker.getModel().getValue());
+                    ps.setString(1, c1.getSelectedItem().toString());
+                    ResultSet rsnew = ps.executeQuery();
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
+            }
+        }
 
     }
     public  static void main(String args[]){
