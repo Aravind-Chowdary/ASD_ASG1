@@ -27,6 +27,7 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
     ResultSet rs;
     Statement stmt;
     UpdateRoomAvailability(){
+        db = new DB();
         jf = new JFrame();
         jf.setLayout(null);
         l1 = new JLabel("Assign Id *");
@@ -102,22 +103,27 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
         b0 = new JButton("Open");
         b0.setBounds(150,300,110,35);b0.setToolTipText("click to open  details");
         jf.add(b0);
+        b0.addActionListener(this);
 
         b1 = new JButton("Update");
         b1.setBounds(300,300,110,35);b1.setToolTipText("click to update  details");
         jf.add(b1);
+        b1.addActionListener(this);
 
         b2 = new JButton("Clear");
         b2.setBounds(450,300,110,35);b2.setToolTipText("click to clear all textfilds");
         jf.add(b2);
+        b2.addActionListener(this);
 
         b3 = new JButton("All");
         b3.setBounds(600,300,110,35);b3.setToolTipText("click to view all  details");
         jf.add(b3);
+        b3.addActionListener(this);
 
         b4 = new JButton("Delete");
         b4.setBounds(750,300,110,35);b4.setToolTipText("click to delete  details");
         jf.add(b4);
+        b4.addActionListener(this);
 
         scrlPane.setBounds(80,380,900,600);
         jf.add(scrlPane);
@@ -241,8 +247,47 @@ public class UpdateRoomAvailability extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null,"SQL Error:"+se);
             }
         }
+        else if(ae.getSource()==b4)
+        {//update
+
+
+
+            if(((t1.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter area id  !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+
+
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    stmt=con.createStatement();
+                    String str1="delete from room_availbility where aid="+t1.getText();
+                    stmt.executeUpdate(str1);
+                    JOptionPane.showMessageDialog(null, "Record is deleted");
+                    t1.setText("");
+                    c1.setSelectedItem("select");
+                    c2.setSelectedItem("select");
+                    t4.setText("");
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error:"+e);
+                }
+            }
+        }
     }
     public static void main(String args[]){
-
+        new UpdateRoomAvailability();
     }
 }
