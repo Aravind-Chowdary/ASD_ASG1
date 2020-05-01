@@ -225,6 +225,49 @@ public class UpdateUser extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null,"Error:"+e);
             }
         }
+        else if(ae.getSource()==b4)
+        {//update
+
+            String email=t5.getText();
+            Pattern p=Pattern.compile("[_a-z_A-Z_0-9]*[0-9]*@[a-zA-Z0-9]*.[a-zA-Z0-9]*");
+            Matcher m=p.matcher(email);
+            boolean matchFound=m.matches();
+
+            if(((t1.getText()).equals(""))&&((t2.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"Please enter user id or name !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(((t2.getText()).equals(""))||((t3.getText()).equals(""))||((t5.getText()).equals("")))
+            {
+                JOptionPane.showMessageDialog(this,"* Detail are Missing !","Warning!!!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(!matchFound)
+            {
+                JOptionPane.showMessageDialog(this,"Invalid email id!","Warning!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            else
+            {
+                try
+                {
+                    con=db.getConnection();
+                    System.out.println("Connected to database.");
+                    stmt=con.createStatement();
+                    String str1="delete from user_manager where u_id='"+t1.getText()+"' or username='"+t2.getText()+"' ";
+                    stmt.executeUpdate(str1);
+                    JOptionPane.showMessageDialog(null, "Record is deleted");
+                    t1.setText("");
+                    t2.setText("");
+                    t3.setText("");
+                    t5.setText("");
+                    con.close();
+                }
+                catch(SQLException se)
+                {
+                    System.out.println(se);
+                    JOptionPane.showMessageDialog(null,"SQL Error:"+se);
+                }
+            }
+        }
 
     }
     public static void main(String args[])
